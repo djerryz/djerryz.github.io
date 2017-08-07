@@ -1,24 +1,173 @@
 ---
 layout: default
 ---
-
-<script  async="" src="/public/js/comment.js"></script>
+<head>
+<script>
+	 $(window).scroll(function(){
+     nScrollHight = -$(window).scrollTop()*($(window).width()/1000);
+	 var sh={"background-position":'50% '+nScrollHight+'px'};
+	 $(".socials_background").css(sh);
+})
+	</script>
+<script>
+ $(function () {
+  //方法二：
+  (function ($) {
+   $.getUrlParam = function (name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+   }
+  })(jQuery);
+  var xx = $.getUrlParam('a');
+  if(xx==1){
+	$(".change-where").html("分类阅读");
+  }else if(xx==2){
+	$(".change-where").html("文库");
+  }
+  $(".socials_background").css({"background-image":"url({{page.image.original}})"});
+  if($("#page__section-label").html()==null){
+	$(".link-comment").append("0&nbsp;Comment"); 
+  }else{
+	$(".link-comment").append($("#page__section-label").html().replace(/[^0-9]/ig,"")+"&nbsp;Comments"); 
+  }
+ });
+</script>
+<script src="/public/js/comment.js"></script>
 <link rel="stylesheet" href="{{ site.baseurl }}public/css/comment.css">
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-
-<div class="post">
+<link rel="stylesheet" href="/public/css/navigation.css">
+<style>
+.socials_parent{
+height:350px;
+position: relative;
+overflow: hidden;
+display:block;
+}
+.socials_background{
+height:180%;
+background-size: cover;
+}
+.page__header{
+display:table-cell; 
+vertical-align:bottom;
+height:350px;
+}
+.intro-title {
+ margin-bottom:1rem;
+ line-height:1;
+ font-size:26px
+ color: #595e65 !improtant;
+}
+@media screen and (min-width:320px) {
+ .intro-title {
+  font-size:calc(26px + 54 * ((100vw - 320px) / 960))
+ }
+ 
+.entry-meta {
+    font-size: calc(12px + 4 * ((100vw - 320px) / 960));
+}
+}
+@media screen and (min-width:1280px) {
+ .intro-title {
+  font-size:80px
+ }
+ .entry-meta {
+    font-size: 16px;
+}
+}
+.intro-text{
+color:pink;
+font-size: 1.5em;
+line-height: 1.625;
+}
+.entry-meta .icon {
+    margin-right: .5em;
+    fill: #00848a;
+}
+svg:not(:root) {
+    overflow: hidden;
+}
+.icon {
+    display: inline-block;
+    position: relative;
+    top: -.125em;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    vertical-align: middle;
+    fill: currentColor;
+}
+.entry-meta {
+    display: block;
+}
+.entry-meta .byline-item:not(:first-child) {
+    margin-left: 1.5rem;
+}
+.link-comment{
+text-decoration: none;
+color:black !important;
+}
+</style>
+</head>
+<div class="socials_parent">
+	<div class="socials_background">
 	<header class="page__header">
-	<h1 class="page__title">{{page.title}}</h1>
-	<p class="page__excerpt">A collection of thoughts, inspiration, mistakes, and other minutia I’ve written. For smaller, more regular tidbits — peruse the <a href="/til/">
-	<em>Today I Learned</em>
-	</a> section.</p>
+		<p class="intro-text">{{page.excerpt}}</p>
 	</header>
-  <span class="post-date">{{ page.date | date_to_string }}</span>
+	</div>
+</div>
+<div class="index">
+<div class="page__wrap">
+<div class="post">
+<div class="masthead-bar">
+	<div class="masthead-bar__face">
+		<div class="masthead-bar__menu">
+		<span class="masthead-bar__menu-item2">
+		<a class="link link--active2" href="/blog"><<返回上层</a>
+		</span>
+		<span class="masthead-bar__menu-item3">
+		<a class="link link--active">当前位置:</a>
+		</span>
+		<span class="masthead-bar__menu-item">
+		<a class="link" href="/">首页</a>
+		</span>
+		<span class="masthead-bar__menu-item">
+		<a class="link" href="/blog">Blog</a>
+		</span>
+		<span class="masthead-bar__menu-item">
+		<a class="link change-where" href="">最新文章</a>
+		</span>
+		<span class="masthead-bar__menu-item">
+		<a class="link" href="">{{page.title}}</a>
+		</span>
+		</div>
+		</div>
+		
+</div>
+	<h1 class="intro-title">{{page.title}}</h1>
+	<p class="entry-meta">
+	<span class="byline-item">
+	<svg class="icon icon--calendar" width="16px" height="16px">
+	<use xlink:href="/images/icons/icons.svg#calendar"></use>
+	</svg>
+	<time>{{ page.date | date_to_string }}</time>
+	</span>
+	<span class="byline-item">
+	<svg class="icon icon--stopwatch" width="16px" height="16px">
+	<use xlink:href="/images/icons/icons.svg#comments"></use>
+	</svg>13&nbsp;min&nbsp;read
+	</span> 
+	<span class="byline-item">
+	<a href="#comments" class="link-comment">
+	<svg class="icon icon--comments" width="16px" height="16px">
+	<use xlink:href="/images/icons/icons.svg#comments"></use>
+	</svg></a>
+	</span>
+	</p>
   {{ content }}
 </div>
-
 {% include show-comments-1.html %}
-
   <div class="listing comments">
   <ul>
     {% for post in site.related_posts limit:3 %}
@@ -33,5 +182,7 @@ layout: default
     {% endfor %}
   </ul>
   </div>
-  
+</div>
+</div>
+
 

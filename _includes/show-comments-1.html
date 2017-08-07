@@ -1,9 +1,11 @@
 {% capture post_slug %}{{ page.date | date: "%Y-%m-%d" }}-{{ page.title | slugify }}{% endcapture %}
+
 <section class="page__reactions">
+ {{page.date | date: "%Y-%m-%d" }}-{{ page.title | slugify }}
     {% if site.data.comments[post_slug] %}
       <!-- Start static comments -->
       <div id="comments" class="js-comments">
-        <h2 class="page__section-label">
+        <h2 class="page__section-label" id="page__section-label">
           {% if site.data.comments[post_slug].size > 1 %}
             {{ site.data.comments[post_slug] | size }}
           {% endif %}

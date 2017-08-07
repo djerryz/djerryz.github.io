@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
   {% include head.html %}
   <head>
   	<script>
@@ -12,7 +11,9 @@
 	res = res.toFixed(2)*100;
 	var divOne=document.getElementById('divOne');
 	divOne.style.width=res+'%';
+	divOne.style.left=(100-res)+'%';
 	 });
+	 window.zhan=1;
 	 </script>
   <script>	
 	function touchm (event){  
@@ -27,44 +28,126 @@
   	function zhanyin(){
 	var labelm=document.getElementById('sidebar-checkbox');
 	var divm=document.getElementById('divOne');
-	var a=document.getElementById('sidebar-toggle').innerHTML;
-	if(a=='隐藏'){
+	//var a=document.getElementById('sidebar-toggle').innerHTML;
+	if(zhan==0){
 	labelm.checked=false;
 	divm.removeEventListener('touchmove',touchm); 
 	divm.removeEventListener('touchend',touche);
 	document.getElementsByClassName('wrap')[0].style.display="none";
-	document.getElementById('sidebar-toggle').innerHTML = '展开';//通过id获取label,修改值为2
+	zhan=1;
+	//document.getElementById('sidebar-toggle').innerHTML = '展开';//通过id获取label,修改值为2
+	//document.body.style.overflowY="scroll";
+	//document.getElementsByClassName('wrapall')[0].style.position = "relative";
 	}else{
 	labelm.checked=true;
 	document.getElementsByClassName('wrap')[0].style.display="block";
-	document.getElementById('sidebar-toggle').innerHTML = '隐藏';//通过id获取label,修改值为2
+	zhan=0;
+	//document.getElementById('sidebar-toggle').innerHTML = '隐藏';//通过id获取label,修改值为2
+	//document.body.style.overflowY="hidden";//隐藏且禁用
+	//document.getElementsByClassName('wrapall')[0].style.position = "fixed";
 	divm.addEventListener('touchmove',touchm); 
 	divm.addEventListener('touchend',touche);  
 	}
 	};
 	</script>
-
+	<script>
+	$(document).ready(function() {
+	var a;
+	var b=0;
+	var checkonnews={
+	"opacity": "1",
+	"transform":"translate3d(0, 0.32rem, 0)",
+	"box-shadow":"0 0 0 1px rgba(0, 0, 0, 0.15)",
+	"z-index":"40",
+	"display":"block"
+	};
+	var checkoutnews={
+	"opacity": "0",
+	"transform":"translate3d(0, -0.32rem, 0)",
+	"box-shadow":"none",
+	"z-index":"-5"
+	};
+	var checkonhas={"opacity": "1"};
+	var checkouthas={"opacity": "0.2"};
+	$(".has-ajax,.news").mouseover(function(){
+	if(b==0){
+		$(".news").css(checkonnews);
+		$(".has-ajax").css(checkonhas);
+		b=1;
+	}else{
+		clearTimeout(a);
+	}
+	});
+	$(".has-ajax,.news").mouseout(function(){
+		a=setTimeout(function() { 
+			$(".news").css(checkoutnews);
+			$(".has-ajax").css(checkouthas);
+			b=0;
+		}, 340);
+	});
+    $(".close").click(function(){
+		$(".news").css(checkoutnews);
+		$(".has-ajax").css(checkouthas);
+		b=0;
+	});
+	myToggle = document.querySelector('.toggle');
+	myToggle.addEventListener('click', function () {
+	if(myToggle.classList.contains('open')){
+	myToggle.classList.remove('open');
+	}else{
+	  myToggle.classList.add('open');
+	}
+	});
+	});
+	</script>
   </head>
   <body>
     <input class="sidebar-checkbox" id="sidebar-checkbox" type="checkbox">
    {% include sidebar.html %}
-   
-	
-        <div class="masthead">
-        <div>
+   <div class="sidebar-toggle-wrapper">
+      <button class="toggle navicon-button larr" type="button" onclick="zhanyin()">
+        <span class="toggle-inner">
+        <span class="sidebar-toggle-label">menu</span> 
+		<span class="navicon"></span>
+		</span> 
+      </button>
+    </div>
+<div class="wrapall">
+    <div class="masthead">
+       <div>
           <h3 class="masthead-title">
             <a href="/translation-napoleon-hill.html">Napoleon Hill</a>
             <small>“If you can't do great things, do small things in a great way.” </small>
+			<a class="has-ajax">What&#39;s Next</a>
           </h3>
+       </div>
+    </div>
+		  <div id="inedx-news" class="">
+          <div class="news">
+            <header>
+              <a class="close">×</a>
+            </header>
+            <article>
+              <p>Hello Barcelona! Closing out tonight at Barcelona Beach Festival!</p>
+            </article>
+            <footer>
+              <div class="source">
+              <a href=""></a> 
+              <span class="date">July 16th</span></div>
+              <div class="social-buttons light right">
+              <a href="/login" class="like-button" title="Sign in to share" data-toggle="modal" data-target="#login-dialog"
+              data-backdrop="static" data-remote="false">
+                <span class="text">0</span>
+              </a> 
+              <a href="/login" class="share-button" title="Sign in to share" data-toggle="modal" data-target="#login-dialog"
+              data-backdrop="static" data-remote="false">
+                <span class="text">Share</span>
+              </a></div>
+            </footer>
+          </div>
         </div>
-        </div>
- 
-	<div class="index">
-	<div class="page__wrap">
 	{{content}}
-	</div>
-	</div>
-    <label id="sidebar-toggle" onclick="zhanyin()" class="sidebar-toggle">展开</label>
+</div>
 	<label id="divOne" onclick="zhanyin()" class="wrap"></label>
   </body>
 </html>

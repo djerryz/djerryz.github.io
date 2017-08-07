@@ -1,30 +1,341 @@
 ---
-layout: default
-title: Home
+title: 首页
+my_variable1: head.html
+my_variable2: sidebar.html
 ---
-
-
-<body class="theme-base-08"></body>
-
-<div class="list">
-{% for post in paginator.posts %}
-<article class="item" >
-  <a href="{{ post.url }}">
-    <div class="item__content">
-      <h1 class="item__title">{{ post.title }}</h1>
-      <div class="item__meta">
-        <span>{{ post.date | date_to_string }}</span>
+<!DOCTYPE html>
+<html lang="en-us">
+ {% include {{ page.my_variable1 }} %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />	
+    <link href="public/css/index.css" rel="stylesheet" type="text/css" />
+    <script src="{{ site.baseurl }}public/js/modernizr-2.6.2.min.js"></script>
+    <script>
+	window.f=0;
+	function show(event) {
+		var translateY=0;
+		var e = event || window.event;
+		var a=$('.stage').width()/2;
+		var b=a-e.clientX+$('.stage').css('left').split('px')[0];
+		b=(b/a)*3;
+		b=b+"%";
+		Modernizr.csstransforms3d ? $('.inner-layer').css({
+		transform: 'translate3d(' + b + ', ' + translateY + 'px, 0)',
+		'-webkit-transform': 'translate3d(' + b + ', ' + translateY + 'px, 0)',
+		'-moz-transform': 'translate3d(' + b + ', ' + translateY + 'px, 0)',
+		'-ms-transform': 'translate3d(' + b + ', ' + translateY + 'px, 0)'
+		})  : $('.inner-layer').css({
+		left:b.split('%')[0]*0.01*a*2 + 'px', 
+		})
+	};
+	function clicktomove(k) {
+		j=window.f;
+		var tran=new Array(0,-402,-803);
+		if(k==0){//左点击
+			if (j!=0){
+				j--;
+			}
+		}else if(k==1){//右点击
+			if (j!=2){
+				j++;
+			}
+		}
+		translateY=0;
+		Modernizr.csstransforms3d ? $('.slides').css({
+		transform: 'translate3d(' + tran[j] + 'px,' + translateY + 'px, 0)',
+		'-webkit-transform': 'translate3d(' + tran[j] + 'px,' + translateY + 'px, 0)',
+		'-moz-transform': 'translate3d(' + tran[j] + 'px,' + translateY + 'px, 0)',
+		'-ms-transform': 'translate3d(' + tran[j] + 'px,' + translateY + 'px, 0)'
+		})  : $('.slides').css({
+		left:tran[j] + 'px',
+		})
+		window.f=j;
+	};
+	</script>
+	<script>
+	  function abc() {
+	  var canvas = document.querySelector('canvas'),
+	  ctx = canvas.getContext('2d');
+	  canvas.width = window.innerWidth;
+	  canvas.height = window.innerHeight;
+	  canvas.style.display = 'block';
+	  ctx.lineWidth = 0.1;
+	  color = '#00f1a3';
+	  var dots = {
+		nb: 380,
+		distance: 80,
+		d_radius: 150,
+		array: [
+		]
+	  };	  
+	  function Dot() {
+		this.x = Math.random() * canvas.width;
+		this.y = Math.random() * canvas.height;
+		this.vx = - 0.5 + Math.random();
+		this.vy = - 0.5 + Math.random();
+		this.radius = Math.random();
+		if (canvas.width>768){
+		this.radius *= 1.9;
+		}
+	  }
+	  Dot.prototype = {
+		create: function () {
+		  ctx.beginPath();
+		  ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+		  ctx.fill();
+		},
+		animate: function () {
+		  for (i = 0; i < dots.nb; i++) {
+			var dot = dots.array[i];
+			if (dot.y < 0 || dot.y > canvas.height) {
+			  dot.vx = dot.vx;
+			  dot.vy = - dot.vy;
+			} 
+			else if (dot.x < 0 || dot.x > canvas.width) {
+			  dot.vx = - dot.vx;
+			  dot.vy = dot.vy;
+			}
+			dot.x += dot.vx;
+			dot.y += dot.vy;
+		  }
+		},
+		line: function () {
+		  for (i = 0; i < dots.nb; i++) {
+			for (j = 0; j < dots.nb; j++) {
+			  i_dot = dots.array[i];
+			  j_dot = dots.array[j];
+			}
+		  }
+		}
+	  };
+	  function createDots() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = color;
+		ctx.strokeStyle = color;
+		for (i = 0; i < dots.nb; i++) {
+		  dots.array.push(new Dot());
+		  dot = dots.array[i];
+		  dot.create();
+		}
+		dot.line();
+		dot.animate();
+	  }
+	  setInterval(createDots, 65);
+	};
+	function closenews(){
+		$(".news").css(checkoutnews);
+		$(".has-ajax").css(checkouthas);
+	}
+	$(document).ready(function() {
+	var a;
+	var b=0;
+	var checkonnews={
+	"opacity": "1",
+	"transform":"translate3d(0, 0.32rem, 0)",
+	"box-shadow":"0 0 0 1px rgba(0, 0, 0, 0.15)",
+	"z-index":"40",
+	"display":"block"
+	};
+	var checkoutnews={
+	"opacity": "0",
+	"transform":"translate3d(0, -0.32rem, 0)",
+	"box-shadow":"none",
+	"z-index":"-5"
+	};
+	var checkonhas={"opacity": "1"};
+	var checkouthas={"opacity": "0.2"};
+	abc();
+	$(".has-ajax,.news").mouseover(function(){
+	if(b==0){
+		$(".news").css(checkonnews);
+		$(".has-ajax").css(checkonhas);
+		b=1;
+	}else{
+		clearTimeout(a);
+	}
+	});
+	$(".has-ajax,.news").mouseout(function(){
+		a=setTimeout(function() { 
+			$(".news").css(checkoutnews);
+			$(".has-ajax").css(checkouthas);
+			b=0;
+		}, 340);	
+	});
+    $(".close").click(function(){
+		$(".news").css(checkoutnews);
+		$(".has-ajax").css(checkouthas);
+		b=0;
+	});
+	 /*$("#lock").click(function(){
+		$(".wrapall").animate({filter: "blur(18px)",marginTop:"20"},6000);
+	});*/
+	});
+	</script>
+	<script>
+	document.addEventListener("DOMContentLoaded", function(){
+	document.body.style.display = "block";//等待CSS全部加载完再显示
+	var c = document.getElementsByClassName('sidebar')[0].offsetWidth;
+	var d = document.body.offsetWidth;
+	var res = 1-c/d;
+	res = res.toFixed(2)*100;
+	var divOne=document.getElementById('divOne');
+	divOne.style.width=res+'%';
+	divOne.style.left=(100-res)+'%';
+	 });
+	 window.zhan=1;
+	 window.view=1;
+	 </script>
+  <script>	
+	function touchm (event){  
+            var event = event || window.event;    
+            event.preventDefault(); //阻止touchmove的默认动作
+     } 
+	function touche (event){  
+            var event = event || window.event;    
+            event.preventDefault(); //阻止touchend的默认动作
+			zhanyin();
+     } 
+  	function zhanyin(){
+	var labelm=document.getElementById('sidebar-checkbox');
+	var divm=document.getElementById('divOne');
+	var a=document.getElementById('sidebar-toggle').innerHTML;
+	if(zhan==0){
+	labelm.checked=false;
+	divm.removeEventListener('touchmove',touchm); 
+	divm.removeEventListener('touchend',touche);
+	document.getElementById('divOne').style.display="none";
+	zhan=1;
+	//document.getElementById('sidebar-toggle').innerHTML = '展开';//通过id获取label,修改值为2
+	//document.body.style.overflowY="scroll";
+	//document.getElementsByClassName('wrapall')[0].style.position = "relative";
+	}else{
+	labelm.checked=true;//这儿相当于实现了for功能
+	document.getElementById('divOne').style.display="block";
+	zhan=0;
+	//document.getElementById('sidebar-toggle').innerHTML = '隐藏';//通过id获取label,修改值为2
+	//document.body.style.overflowY="hidden";//隐藏且禁用
+	//document.getElementsByClassName('wrapall')[0].style.position = "fixed";
+	divm.addEventListener('touchmove',touchm); 
+	divm.addEventListener('touchend',touche);  
+	}
+	}
+	function preview(){
+		var labelp=document.getElementById('button-lock');
+		if(view==0){
+			labelp.checked=false;
+			view=1;
+		}else{
+			labelp.checked=true;
+			view=0;
+		}
+	};
+	</script>
+ </head>
+ <body>
+	<input class="sidebar-checkbox" id="sidebar-checkbox" type="checkbox" /> 
+	<input style="display:none" id="button-lock" type="checkbox" /> 
+	{% include {{ page.my_variable2 }} %}
+    <div class="wrapall">
+      <div class="masthead-index" style="">
+		<div class="masthead-title">
+        <h3>
+        <a href="/translation-napoleon-hill.html">Napoleon Hill</a> 
+        <small>“If you can&#39;t do great things, do small things in a great way.”</small>
+		<a class="has-ajax" style="margin-top:-1rem;">What&#39;s Next</a>
+		</h3>
+		</div>
       </div>
-      <div class="item__excerpt">
-        <p>{{ post.excerpt }}</p>
+	  <div id="inedx-news" class="">
+          <div class="news" style="top:2rem;right:0.3rem;">
+            <header>
+              <a class="close">×</a>
+            </header>
+            <article>
+              <p>Hello Barcelona! Closing out tonight at Barcelona Beach Festival!</p>
+            </article>
+            <footer>
+              <div class="source">
+              <a href=""></a> 
+              <span class="date">July 16th</span></div>
+              <div class="social-buttons light right">
+              <a href="/login" class="like-button" title="Sign in to share" data-toggle="modal" data-target="#login-dialog"
+              data-backdrop="static" data-remote="false">
+                <span class="text">0</span>
+              </a> 
+              <a href="/login" class="share-button" title="Sign in to share" data-toggle="modal" data-target="#login-dialog"
+              data-backdrop="static" data-remote="false">
+                <span class="text">Share</span>
+              </a></div>
+            </footer>
+          </div>
+        </div>
+      <div class="cover">
+        <aside class="sidebar-index">
+          <div class="index-logo">
+            <img src='/images/logo.png' />
+          </div>
+          <div class="index-item">
+            <header>
+              <h2 color="white">这里是标题</h2>
+            </header>
+            <p>内容</p>
+          </div>
+        </aside>
+        <div class="stage" onmousemove="show(event);">
+          <div class="prev-next">
+          <a class="previous" onclick="clicktomove(0);"></a> 
+          <a class="next" onclick="clicktomove(1);"></a></div>
+          <div class="inner-layer" data-depth="0.40">
+            <div class="slides">
+              <article class="onair-episode">
+			  <div class="header">
+			  <h3>TYPE</h3>
+			  <h2 style="font-size:3rem;">BLOG</h2>
+			  <span style="color:#a2a2b0">update-time:July 23st,2017</span>
+			  </div>
+			  <a href="/blog.html" class="btn-in btn-same">See More</a>
+			   <canvas style="display: block;"></canvas>
+              </article>
+              <article class="onair-episode">
+			      <div class="header">
+			  <h3>TYPE</h3>
+			  <h2 style="font-size:3rem;">GAME</h2>
+			  <span style="color: #0497db;text-shadow: #6f0303 2px 0 0;">update-time:July 23st,2017</span>
+			  </div>
+			  <a href="/" class="btn-in btn-same">See More</a>
+               <img src="/images/life.jpg" height="auto" width="100%"/>
+              </article>
+			  <article class="onair-episode">
+			        <div class="header">
+			  <h3>TYPE</h3>
+			  <h2 style="font-size:3rem;">MUSIC</h2>
+			  <span style="color: #f8e136;text-shadow: #058020 2px 0 0;">update-time:July 23st,2017</span>
+			  </div>
+			  <a href="/" class="btn-in btn-same">See More</a>
+                <img src="/images/music.png" height="100% !important" width="100%" />
+              </article>
+              <article class="onair-episode last-art">
+				<div class="header">
+			    <label id="preview" class="div-center" onclick="preview()">模块预览</label>
+				<h2 style="margin-top:52%;">LOCK</h2>
+				</div>
+                <img class="lock" src="/images/lock.png"/>
+				<div class="input-container" style="position: relative;">
+				<input class="index-lock" placeholder="Enter password"></input>
+				</div>
+				<a onclick="preview()" class="btn-lock btn-same" >Launch</a>
+              </article>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-	<div class="item__image" style="background-image:url(https://mademistakes.com/assets/images/improving-jekyll-static-comments-teaser.jpg)">
-	<img src="https://mademistakes.com/assets/images/improving-jekyll-static-comments-teaser.jpg" alt=""></div>
-  </a>
-</article>
-{% endfor %}
-</div>
-
-
-
+	<button id="close-button" ></button>
+	<label id="sidebar-toggle" onclick="zhanyin()" class="sidebar-toggle"></label>
+    <label id="divOne" onclick="zhanyin()" class="wrap"></label>
+	<label id="divTwo" onclick="preview()" class="wrap">
+	<div class="header"><h2>功能开发中！！！</h2></div>
+	</label>
+  </body>
+</html>

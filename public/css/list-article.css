@@ -1,33 +1,8 @@
-a:focus {
-	outline:thin dotted #ffd43b;
-	outline:5px auto #ffd43b;
-	outline-offset:-2px
-}
-
 small {
 	font-size:.8em
 }
-a {
-	color:#2375c1;
-	text-decoration:none
-}
-a:active,a:hover {
-	color:#205f9d;
-	outline:0
-}
-a:hover {
-	text-decoration:underline
-}
 a:visited {
 	color:#7987c0
-}
-img {
-	max-width:100%;
-	width:auto\9;
-	height:auto;
-	vertical-align:middle;
-	border:0;
-	-ms-interpolation-mode:bicubic
 }
 a img {
 	border:.125em solid #333;
@@ -39,10 +14,7 @@ a img:hover {
 svg:not(:root) {
 	overflow:hidden
 }
-.btn,.highlight,.palette__swatch,a,b,blockquote,em,figure,form button,h1,h2,header,i,img,input,input[type=submit],p,q,span,strong,td,tr {
-	-webkit-transition:all .3s ease-in-out;
-	transition:all .3s ease-in-out
-}
+
 @-webkit-keyframes a {
 	0% {
 		-webkit-transform:rotate(0deg);
@@ -69,14 +41,14 @@ svg:not(:root) {
 }
 
 
-h1[id]:before,h2[id]:before,h3[id]:before,h4[id]:before,h5[id]:before,h6[id]:before {
+/*h1[id]:before,h2[id]:before,h3[id]:before,h4[id]:before,h5[id]:before,h6[id]:before {
 	display:block;
 	content:" ";
 	margin-top:-75px;
 	height:75px;
 	visibility:hidden
 }
-
+*/
 .page__wrap {
 	padding-left:1em;
 	padding-right:1em
@@ -207,6 +179,10 @@ h1[id]:before,h2[id]:before,h3[id]:before,h4[id]:before,h5[id]:before,h6[id]:bef
 	background-position:50%;
 	-webkit-backface-visibility:hidden;
 	backface-visibility:hidden
+	-webkit-filter: blur(10px);
+	filter: blur(10px);
+	transition: filter 2s,-webkit-filter 2s;
+	background-image:url(https://mademistakes.com/assets/images/improving-jekyll-static-comments-teaser.jpg);
 }
 .item__image:before {
 	position:absolute;
@@ -230,17 +206,4 @@ h1[id]:before,h2[id]:before,h3[id]:before,h4[id]:before,h5[id]:before,h6[id]:bef
 		-ms-flex-preferred-size:45%;
 		flex-basis:45%
 	}
-	.item__image img {
-		display:none
-	}
 }
-.item__image img {
-	width:100%;
-	border:none;
-	box-shadow:none
-}
-.item__image img:hover {
-	box-shadow:none
-		
-}
-

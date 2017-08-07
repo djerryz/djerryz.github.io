@@ -4,7 +4,7 @@
     margin-bottom: 4em;
 }
 
-.page__section-label::before {
+/*.page__section-label::before {
     position: absolute;
     bottom: -.5em;
     content: "";
@@ -13,7 +13,7 @@
     background-color: #333;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
-}
+}*/
 .page__section-label {
     position: relative;
     margin: 0 0 2em;
@@ -135,14 +135,8 @@ a img:hover {
 .comment__content div.highlighter-rouge .highlight code {
 	font-size:.8em;
 }
-
 .comment__reply .btn {
 	font-size:.64em;
-}
-a:focus {
-    outline: thin dotted #ffd43b;
-    outline: 2px auto #ffd43b;
-    outline-offset: -2px;
 }
 .btn {
     display: inline-block;

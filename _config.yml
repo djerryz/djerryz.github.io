@@ -3,7 +3,7 @@ markdown:         redcarpet
 highlighter:      pygments
 
 # Permalinks
-permalink:        pretty
+#permalink:        pretty
 #relative_permalinks: true
 
 # Setup
@@ -18,8 +18,8 @@ author:
   name:           'Djerry'
   url:            djerrystyle.github.io
 
-paginate:         9
-
+paginate:         10
+paginate_path: "/archive/page:num/"
 # Custom vars
 
   
@@ -30,9 +30,10 @@ gems:
   - jekyll-sitemap
   - jemoji
   - jekyll-seo-tag
-  - jekyll-paginate-v2
   - jekyll-paginate
   - jekyll-github-metadata
 
 # Staticman
 staticmanUrl: https://api.staticman.net/v2/entry/djerrystyle/djerrystyle.github.io/master/comments
+
+

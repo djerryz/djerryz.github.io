@@ -1,0 +1,55 @@
+---
+layout: default
+title: Blog-index
+---
+<body class="theme-base-08"></body>
+<link rel="stylesheet" href="/public/css/navigation.css">
+<script language="JavaScript" type="text/javascript">
+var img = new Image();
+img.src = "https://mademistakes.com/assets/images/about-michael-collage-2016.jpg";
+var zz={"filter": "blur(0)"};
+img.onload = function() {
+$(".item__image").css('background','url('+this.src+')');
+$(".item__image").css(zz);
+}
+</script> 
+<div class="masthead-bar">
+	<div class="masthead-bar__face">
+		<div class="masthead-bar__menu">
+		<span class="masthead-bar__menu-item2">
+		<a class="link link--active2" href="/blog"><<返回上层</a>
+		</span>
+		<span class="masthead-bar__menu-item3">
+		<a class="link link--active">当前位置:</a>
+		</span>
+		<span class="masthead-bar__menu-item">
+		<a class="link" href="/">首页</a>
+		</span>
+		<span class="masthead-bar__menu-item">
+		<a class="link" href="/blog">Blog</a>
+		</span>
+		<span class="masthead-bar__menu-item">
+		<a class="link" href="">最新博文</a>
+		</span>
+		</div>
+		</div>
+</div>
+<div class="list" style="margin-top:1rem;">
+{% for post in paginator.posts %}
+<article class="item" >
+  <a href="{{ post.url }}">
+    <div class="item__content">
+      <h1 class="item__title">{{ post.title }}</h1>
+      <div class="item__meta">
+        <span>{{ post.date | date_to_string }}</span>
+      </div>
+      <div class="item__excerpt">
+        <p>{{ post.excerpt }}</p>
+      </div>
+    </div>
+	<div class="item__image">
+	</div>
+  </a>
+</article>
+{% endfor %}
+</div>
