@@ -1,0 +1,38 @@
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
+
+# Permalinks
+permalink:        pretty
+#relative_permalinks: true
+
+# Setup
+title:            Djerry
+tagline:          'Djerry Security'
+description-en:      'Devote to Information Security&Countermeasure Research'
+description-ch:      '致力于信息安全和对抗技术研究'
+url:              djerrystyle.github.io
+baseurl:          /
+
+author:
+  name:           'Djerry'
+  url:            djerrystyle.github.io
+
+paginate:         9
+
+# Custom vars
+
+  
+googleAnalyticsId: UA-54012006-1  
+
+# Plugins
+gems:
+  - jekyll-sitemap
+  - jemoji
+  - jekyll-seo-tag
+  - jekyll-paginate-v2
+  - jekyll-paginate
+  - jekyll-github-metadata
+
+# Staticman
+staticmanUrl: https://api.staticman.net/v2/entry/djerrystyle/djerrystyle.github.io/master/comments

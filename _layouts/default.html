@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  {% include head.html %}
+  <head>
+  	<script>
+	document.addEventListener("DOMContentLoaded", function(){
+	document.body.style.display = "block";//等待CSS全部加载完再显示
+	var c = document.getElementsByClassName('sidebar')[0].offsetWidth;
+	var d = document.body.offsetWidth;
+	var res = 1-c/d;
+	res = res.toFixed(2)*100;
+	var divOne=document.getElementById('divOne');
+	divOne.style.width=res+'%';
+	 });
+	 </script>
+  <script>	
+	function touchm (event){  
+            var event = event || window.event;    
+            event.preventDefault(); //阻止touchmove的默认动作
+     } 
+	function touche (event){  
+            var event = event || window.event;    
+            event.preventDefault(); //阻止touchend的默认动作
+			zhanyin();
+     } 
+  	function zhanyin(){
+	var labelm=document.getElementById('sidebar-checkbox');
+	var divm=document.getElementById('divOne');
+	var a=document.getElementById('sidebar-toggle').innerHTML;
+	if(a=='隐藏'){
+	labelm.checked=false;
+	divm.removeEventListener('touchmove',touchm); 
+	divm.removeEventListener('touchend',touche);
+	document.getElementsByClassName('wrap')[0].style.display="none";
+	document.getElementById('sidebar-toggle').innerHTML = '展开';//通过id获取label,修改值为2
+	}else{
+	labelm.checked=true;
+	document.getElementsByClassName('wrap')[0].style.display="block";
+	document.getElementById('sidebar-toggle').innerHTML = '隐藏';//通过id获取label,修改值为2
+	divm.addEventListener('touchmove',touchm); 
+	divm.addEventListener('touchend',touche);  
+	}
+	};
+	</script>
+
+  </head>
+  <body>
+    <input class="sidebar-checkbox" id="sidebar-checkbox" type="checkbox">
+   {% include sidebar.html %}
+   
+	
+        <div class="masthead">
+        <div>
+          <h3 class="masthead-title">
+            <a href="/translation-napoleon-hill.html">Napoleon Hill</a>
+            <small>“If you can't do great things, do small things in a great way.” </small>
+          </h3>
+        </div>
+        </div>
+ 
+	<div class="index">
+	<div class="page__wrap">
+	{{content}}
+	</div>
+	</div>
+    <label id="sidebar-toggle" onclick="zhanyin()" class="sidebar-toggle">展开</label>
+	<label id="divOne" onclick="zhanyin()" class="wrap"></label>
+  </body>
+</html>
