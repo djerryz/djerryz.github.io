@@ -38,7 +38,7 @@ function clicktomove(k) {
 	})
 	window.f = j;
 };
- <  / script >  < script > function abc() {
+function abc() {
 	var canvas = document.querySelector('canvas'),
 	ctx = canvas.getContext('2d');
 	canvas.width = window.innerWidth;
