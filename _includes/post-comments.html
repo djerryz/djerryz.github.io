@@ -5,7 +5,7 @@
  <h2 class="page__section-label">Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="{{ page.url | absolute_url }}#respond" style="display:none;">Cancel reply</a></small></h2>
          <fieldset class="hidden" style="display: none;">
 			<input type="hidden" id="comment-replying-to" name="fields[replying_to]" value="">
-            <input type="hidden" id="comment-post-id" name="options[slug]" value="{{ post_slug }}">
+            <input type="hidden" id="comment-post-id" name="options[slug]" value="{{ page.slug }}">
 		 </fieldset>
 		<input name="fields[name]" placeholder="Name" required="" type="text">
 		<input name="fields[email]" placeholder="Email address (will not be public)" type="email">
