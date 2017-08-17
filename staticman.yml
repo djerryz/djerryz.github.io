@@ -39,11 +39,13 @@ comments:
   moderation: false
 
   # Name of the site. Used in notification emails.
-  name: "djerry.xyz"
+  name: "Djerry"
   
   notifications:
     enabled: true
-
+    apiKey: "CFLhRZ1Gi1Ocx9Ly1WKxYt79WAI5sTqxlmm4rGOOJxmQHRGVopv3GK67B+h9Si24+WNMSgXbzARZVaJa73fHZxwzGQU3FbVmdzdd3oN1CqrQz1qbt/eb8uhDenIvQZk4fw0nuUOXC6wAAL3eGu5hADmh1Q9mlR8irjNLWMybsCc="
+    domain: "aF0AUN24c9bDiT1xicARUXwSHqxzMaCmc27Sm7TV3Z/tiU+F6Gdx5tPnPoqUda3fdLppBkPDD7/kmuBCx+eiGnUj/YPlvC620ZyNBr3EDZv7IexKv93+JergHCRbsLg3Yz6Vu3/hEnNkfhS6ihtO9kCB/+GHFJsrid5UZsCGSmw="
+  
   # (*) REQUIRED
   #
   # Destination path (directory) for the data files. Accepts placeholders.
