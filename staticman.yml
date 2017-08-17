@@ -46,13 +46,12 @@ comments:
     # (!) ENCRYPTED
     #
     # Mailgun API key
-    apiKey: "key-837b35f664c0e93195fe1059970aeb26"
-
+     apiKey: "CFLhRZ1Gi1Ocx9Ly1WKxYt79WAI5sTqxlmm4rGOOJxmQHRGVopv3GK67B+h9Si24+WNMSgXbzARZVaJa73fHZxwzGQU3FbVmdzdd3oN1CqrQz1qbt/eb8uhDenIvQZk4fw0nuUOXC6wAAL3eGu5hADmh1Q9mlR8irjNLWMybsCc="
     # (!) ENCRYPTED
     #
     # Mailgun domain (encrypted)
-    domain: "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIy8mUnVtv+fCNrsp+GGE/nUTARtmxHd7pmf5q67JqzG0jN7VryQ8K0eZXnMQx22YjBj2sbFfwDLa0aiTynP8HYc/tJRydi484BB7uQleGctM4FjxvkqtzFNNxAgmKV5ifs3mqI5zX8qrwkRV314oeNdrfaWCEWYi3g4JQdC4l7QIDAQAB"
-
+    domain: "aF0AUN24c9bDiT1xicARUXwSHqxzMaCmc27Sm7TV3Z/tiU+F6Gdx5tPnPoqUda3fdLppBkPDD7/kmuBCx+eiGnUj/YPlvC620ZyNBr3EDZv7IexKv93+JergHCRbsLg3Yz6Vu3/hEnNkfhS6ihtO9kCB/+GHFJsrid5UZsCGSmw="
+    
   # (*) REQUIRED
   #
   # Destination path (directory) for the data files. Accepts placeholders.
