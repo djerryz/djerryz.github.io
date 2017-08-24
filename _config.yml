@@ -35,6 +35,20 @@ pagination:
   limit        : 0
   sort_field   : "date"
   sort_reverse : true
+  
+# Plugin: Auto Pages (jekyll-paginate-v2)
+autopages:
+  enabled      : false
+  categories:
+    enabled    : false
+  collections:
+    enabled    : false
+  tags:
+    enabled    : false
+    layouts:
+      - "autopage_tags.html"
+    title      : ":tag" # :tag is replaced by the tag name
+    permalink  : "/tag/:tag"
 
 googleAnalyticsId: UA-102824548-1
 

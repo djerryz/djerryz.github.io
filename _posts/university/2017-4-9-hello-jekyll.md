@@ -7,7 +7,7 @@ excerpt: "摘要:这是我的第一篇文章，很高兴使用Jekyll。"
 image:
   feature: *image
   original: /images/post/page/hello-jekyll.jpg
-  cover-1: /images/post/cover-1/hello-jekyll.jpg
+  cover-1: /images/post/cover-1/hello-jekyll
   cover-2: /images/post/cover-2/background-hello-jekyll.jpg
   thumbnail-1: /images/post/thumbnail-1/hello-jekyll.jpg
   thumbnail-2: /images/post/thumbnail-2/background-hello-jekyll.jpg
