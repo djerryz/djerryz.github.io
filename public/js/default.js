@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function () {//这儿用于处理喇叭和sidebar效果
 	var a;
 	var b = 0;
 	var checkonnews = {
@@ -49,46 +49,4 @@ $(document).ready(function () {
 			myToggle.classList.add('open');
 		}
 	});
-var eb = function (t) {
-  function e() {
-    t('#comment-form').submit(function () {
-		var e = t(this).serializeArray();
-        var n = t(this).attr('action'), 
-        o = t.param(e);
-        t.ajax({
-          type: 'POST',
-          url: n,
-          data: o,
-          success: function (t) {
-            var e = t.success ? 'Thanks for your comment. It will appear on the site shortly.' : 'Oops! There was an error when submitting your comment. Please try again.';
-            s(e)
-          },
-          error: function (t) {
-            console.log('** ERROR!'),
-            console.log(t)
-          }
-        }),
-        t(this).get(0).reset()
-		return !1
-    })
-  }
-  function a() {
-    t('#toaster').fadeOut(300, function () {
-      t(this).remove()
-    })
-  }
-  function s(e) {
-    t('#toaster').remove();
-    var i = '<div id="toaster" class="toaster"><button type="button" class="toaster__close js-close-toaster">&times;</button><p>' + e + '</p></div>';
-    t('#wrapall').append(i),
-    setTimeout(function () {
-      a()
-    }, 5000)
-  }
-  return t('body').on('click', '.js-close-toaster', function () {
-	  a()
-  })
-  , 
-  e()
-}(jQuery);
 });

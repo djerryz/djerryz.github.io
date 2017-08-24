@@ -2,6 +2,9 @@
 title: 首页
 my_variable1: head.html
 my_variable2: sidebar.html
+my_variable3: note-icon.html
+main_title: "Djerry介绍"
+main_content: "在2017年的夏季。我搭建了这个网站来分享学习中的经验，灵感和细节。BLOG归纳总结学习内容,GAME是一些有趣游戏，MUSIC收集有Hardstyle风格的音乐。希望你能喜欢:)。"
 ---
 <!DOCTYPE html>
 <html lang="en-us">
@@ -86,40 +89,17 @@ my_variable2: sidebar.html
 		</h3>
 		</div>
       </div>
-	  <div id="inedx-news" class="">
-          <div class="news" style="top:2rem;right:0.3rem;">
-            <header>
-              <a class="close">×</a>
-            </header>
-            <article>
-              <p>Hello Barcelona! Closing out tonight at Barcelona Beach Festival!</p>
-            </article>
-            <footer>
-              <div class="source">
-              <a href=""></a> 
-              <span class="date">July 16th</span></div>
-              <div class="social-buttons light right">
-              <a href="/login" class="like-button" title="Sign in to share" data-toggle="modal" data-target="#login-dialog"
-              data-backdrop="static" data-remote="false">
-                <span class="text">0</span>
-              </a> 
-              <a href="/login" class="share-button" title="Sign in to share" data-toggle="modal" data-target="#login-dialog"
-              data-backdrop="static" data-remote="false">
-                <span class="text">Share</span>
-              </a></div>
-            </footer>
-          </div>
-        </div>
+	  {% include {{ page.my_variable3 }} %}
       <div class="cover">
         <aside class="sidebar-index">
           <div class="index-logo">
-            <img src='/images/logo.png' />
+            <img src='/images/index/logo.png' />
           </div>
           <div class="index-item">
             <header>
-              <h2 color="white">这里是标题</h2>
+              <h2 color="white">{{page.main_title}}</h2>
             </header>
-            <p>内容</p>
+            <p style="text-indent:2em;word-wrap:break-word;">{{page.main_content}}</p>
           </div>
         </aside>
         <div class="stage" onmousemove="show(event);">
@@ -132,9 +112,9 @@ my_variable2: sidebar.html
 			  <div class="header">
 			  <h3>TYPE</h3>
 			  <h2 style="font-size:3rem;">BLOG</h2>
-			  <span style="color:#a2a2b0">update-time:July 23st,2017</span>
+			  <span style="color:#a2a2b0">最近更新:{% assign date=(site.posts)[0]).date %}{{date | date_to_string}}</span>
 			  </div>
-			  <a href="/blog.html" class="btn-in btn-same">See More</a>
+			  <a href="/blog" class="btn-in btn-same">See More</a>
 			   <canvas style="display: block;"></canvas>
               </article>
               <article class="onair-episode">
@@ -144,7 +124,7 @@ my_variable2: sidebar.html
 			  <span style="color: #0497db;text-shadow: #6f0303 2px 0 0;">update-time:July 23st,2017</span>
 			  </div>
 			  <a href="/" class="btn-in btn-same">See More</a>
-               <img src="/images/life.jpg" height="auto" width="100%"/>
+               <img src="/images/index/life.jpg" height="auto" width="100%"/>
               </article>
 			  <article class="onair-episode">
 			        <div class="header">
@@ -153,14 +133,14 @@ my_variable2: sidebar.html
 			  <span style="color: #f8e136;text-shadow: #058020 2px 0 0;">update-time:July 23st,2017</span>
 			  </div>
 			  <a href="/" class="btn-in btn-same">See More</a>
-                <img src="/images/music.png" height="100% !important" width="100%" />
+                <img src="/images/index/music.png" height="100% !important" width="100%" />
               </article>
               <article class="onair-episode last-art">
 				<div class="header">
 			    <label id="preview" class="div-center" onclick="preview()">模块预览</label>
 				<h2 style="margin-top:52%;">LOCK</h2>
 				</div>
-                <img class="lock" src="/images/lock.png"/>
+                <img class="lock" src="/images/index/lock.png"/>
 				<div class="input-container" style="position: relative;">
 				<input class="index-lock" placeholder="Enter password"></input>
 				</div>

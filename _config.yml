@@ -1,10 +1,14 @@
 # Dependencies
-markdown:         redcarpet
-highlighter:      pygments
-
-# Permalinks
-#permalink:        pretty
-#relative_permalinks: true
+permalink                : /:categories/:title/
+kramdown:
+  toc_levels             : 1..3
+  input                  : GFM
+  hard_wrap              : false
+  auto_ids               : true
+  entity_output          : as_char
+  smart_quotes           : lsquo,rsquo,ldquo,rdquo
+  enable_coderay         : false
+highlighter              : rouge
 
 # Setup
 title:            Djerry
@@ -13,27 +17,61 @@ description-en:      'Devote to Information Security&Countermeasure Research'
 description-ch:      '致力于信息安全和对抗技术研究'
 url:              djerrystyle.github.io
 baseurl:          /
+note_title: "最新状态"
+note_content: "Do u Improve Ur Design,Or u do SOmE news"
+note_time: "8月 16号"
 
 author:
   name:           'Djerry'
   url:            djerrystyle.github.io
 
-paginate:         10
-paginate_path: "/archive/page:num/"
-# Custom vars
+# Plugin: Pagination (jekyll-paginate-v2)
+pagination:
+  enabled      : true
+  debug        : false
+  per_page     : 4
+  permalink    : "/page/:num/"
+  title        : ":title - Page :num of :max"
+  limit        : 0
+  sort_field   : "date"
+  sort_reverse : true
 
-  
-googleAnalyticsId: UA-54012006-1  
+googleAnalyticsId: UA-102824548-1
 
+defaults:
+  # Blog Articles
+  - scope:
+      path: _posts/university
+      type: posts
+    values:
+      layout: post
+      category: post-university
+      read_time: true
+      support: true
+      breadcrumbs:
+        - label: "Blog Articles"
+          url: /university/
+   # study
+  - scope:
+      path: _posts/study
+      type: posts
+    values:
+      layout: post
+      category: post-study
+      read_time: true
+      comments: true
+      support: true
+      breadcrumbs:
+        - label: "study"
+          url: /study/
 # Plugins
 gems:
   - jekyll-sitemap
   - jemoji
   - jekyll-seo-tag
-  - jekyll-paginate
-  - jekyll-github-metadata
+  - jekyll-paginate-v2
 
 # Staticman
 staticmanUrl: https://api.staticman.net/v2/entry/djerrystyle/djerrystyle.github.io/master/comments
 
-
+rsa: "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDhDpeMnZQ8cduyMfMw2N0YoP4BwZomUe9Uo8RIFKYw0pSGLUpGq3GgWiCQLDp6yfjVOugJ9H7OdMOxkQbNdbkTv8XElOaJKBPiROciFnIUuyXaPJH957WRLxN1xINJfwLBFvxUZWrIttHIttnBkGQiizHmTIAEI+cgtBuDlKagWQIDAQAB"

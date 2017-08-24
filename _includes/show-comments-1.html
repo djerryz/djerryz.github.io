@@ -1,5 +1,3 @@
-{% capture post_slug %}{{ page.date | date: "%Y-%m-%d" }}-{{ page.title | slugify }}{% endcapture %}
-
 <section class="page__reactions">
     {% if site.data.comments[page.slug] %}
       <!-- Start static comments -->
@@ -12,7 +10,7 @@
         </h2>
         {% assign comments = site.data.comments[page.slug] | where_exp: 'item', 'item.replying_to == blank' %}
         {% for comment in comments %}
-          {% assign index       = forloop.index %}
+          {% assign index       = forloop.index%}
           {% assign r           = comment.replying_to %}
           {% assign replying_to = r | to_integer %}
           {% assign email       = comment.email %}
@@ -20,7 +18,7 @@
           {% assign url         = comment.url %}
           {% assign date        = comment.date %}
           {% assign message     = comment.message %}
-          {% include show-comments-2.html index=index replying_to=replying_to avatar=avatar email=email name=name url=url date=date message=message %}
+          {% include show-comments-2.html index=index replying_to=replying_to avatar=avatar email=email name=name url=url date=date message=message%}
         {% endfor %}
       </div>
       <!-- End static comments -->
@@ -28,4 +26,3 @@
 
 </section>
 
-{% include post-comments.html %}

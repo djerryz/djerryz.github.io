@@ -23,15 +23,15 @@
   </div>
   {% unless include.replying_to != 0 or page.comments_locked == true %}
     <div class="comment__reply">
-      <a rel="nofollow" class="btn" href="#comment-{{ include.index }}" onclick="return addComment.moveForm('comment-{{ include.index }}', '{{ include.index }}', 'respond', '{{ post_slug }}')">Reply to {{ include.name }}</a>
+      <a rel="nofollow" class="btn" href="#comment-{{ include.index }}" onclick="return addComment.moveForm('comment-{{ include.index }}', '{{ include.index }}', 'respond', '{{ page.slug }}')">Reply to {{ include.name }}</a>
     </div>
   {% endunless %}
 </article>
 
 {% capture i %}{{ include.index }}{% endcapture %}
-{% assign replies = site.data.comments[post_slug] | where_exp: 'item', 'item.replying_to == i' %}
+{% assign replies = site.data.comments[page.slug] | where_exp: 'item', 'item.replying_to == i' %}
 {% for reply in replies %}
-  {% assign index       = forloop.index | prepend: '-' | prepend: include.index %}
+  {% assign index       = forloop.index | prepend: '-' | prepend: include.index%}
   {% assign r           = reply.replying_to %}
   {% assign replying_to = r | to_integer %}
   {% assign email       = reply.email %}
