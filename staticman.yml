@@ -39,11 +39,18 @@ comments:
   moderation: false
 
   # Name of the site. Used in notification emails.
+<<<<<<< HEAD
   #按照mistake的说法，这儿是被要求用mailgun
   name: "djerry.xyz"
   
   notifications:
     enabled: true
+=======
+  name: "Djerry"
+  
+  notifications:
+    enabled: false
+>>>>>>> origin/master
   
   # (*) REQUIRED
   #
@@ -61,3 +68,7 @@ comments:
 
   # List of transformations to apply to any of the fields supplied. Keys are
   # the name of the field and values are possible transformation types.
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
