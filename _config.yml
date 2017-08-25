@@ -1,4 +1,5 @@
 # Dependencies
+markdown                 : kramdown
 permalink                : /:categories/:title/
 kramdown:
   toc_levels             : 1..3
