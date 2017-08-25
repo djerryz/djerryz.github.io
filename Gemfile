@@ -11,4 +11,5 @@ group :jekyll_plugins do
   gem 'jemoji'
   gem 'jekyll-seo-tag', :git => 'https://github.com/jekyll/jekyll-seo-tag.git'
   gem 'jekyll-paginate-v2'
+  gem 'jekyll-paginate'
 end

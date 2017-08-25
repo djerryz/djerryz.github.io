@@ -35,12 +35,18 @@ author:
   name:               'Djerry'
   url:                 djerrystyle.github.io
 
-# Plugins
+# Plugins：是针对Jekyll而言的，gems是针对整个环境而言
 plugins:
   - jekyll-sitemap
   - jemoji
   - jekyll-seo-tag
-  - jekyll-paginate-v2
+  # - jekyll-paginate-v2
+
+gems:
+    - jekyll-paginate
+    
+paginate: 4
+paginate_path: "/archive/page:num/"
 
 googleAnalyticsId: UA-102824548-1
 
@@ -77,31 +83,32 @@ defaults:
     values:
       layout: page
 
+#https://pages.github.com/versions/上看的到现在还不支持
 # Plugin: Pagination (jekyll-paginate-v2)
-pagination:
-  enabled      : true
-  debug        : false
-  per_page     : 4
-  permalink    : "/page/:num/"
-  title        : ":title - Page :num of :max"
-  limit        : 0
-  sort_field   : "date"
-  sort_reverse : true
+# pagination:
+  # enabled      : true
+  # debug        : false
+  # per_page     : 4
+  # permalink    : "/page/:num/"
+  # title        : ":title - Page :num of :max"
+  # limit        : 0
+  # sort_field   : "date"
+  # sort_reverse : true
 
   
 # Plugin: Auto Pages (jekyll-paginate-v2)
-autopages:
-  enabled      : false
-  categories:
-    enabled    : false
-  collections:
-    enabled    : false
-  tags:
-    enabled    : false
-    layouts:
-      - "autopage_tags.html"
-    title      : ":tag" # :tag is replaced by the tag name
-    permalink  : "/tag/:tag"
+# autopages:
+  # enabled      : false
+  # categories:
+    # enabled    : false
+  # collections:
+    # enabled    : false
+  # tags:
+    # enabled    : false
+    # layouts:
+      # - "autopage_tags.html"
+    # title      : ":tag" # :tag is replaced by the tag name
+    # permalink  : "/tag/:tag"
      
 # Staticman
 staticmanUrl: https://api.staticman.net/v2/entry/djerrystyle/djerrystyle.github.io/master/comments
