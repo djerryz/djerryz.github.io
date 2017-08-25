@@ -78,12 +78,16 @@ defaults:
 pagination:
   enabled      : true
   debug        : false
+  collection   : 'posts'
   per_page     : 4
   permalink    : "/page/:num/"
   title        : ":title - Page :num of :max"
   limit        : 0
   sort_field   : "date"
   sort_reverse : true
+  category: 'posts'
+  tag: ''
+  locale: '' 
   
 # Plugin: Auto Pages (jekyll-paginate-v2)
 autopages:
