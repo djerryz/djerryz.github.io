@@ -39,6 +39,8 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate-v2
 
+gems: [jekyll-paginate-v2]
+
 googleAnalyticsId: UA-102824548-1
 
 defaults:
