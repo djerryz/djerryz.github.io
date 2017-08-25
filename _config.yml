@@ -16,6 +16,9 @@ keep_files:
   - .git
 include:
   - _pages
+exclude:
+  - Gemfile
+  - Gemfile.lock
 
 # Setup
 title:                Djerry
@@ -39,7 +42,8 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate-v2
 
-gems: [jekyll-paginate-v2]
+gems:
+  - jekyll-paginate-v2
 
 googleAnalyticsId: UA-102824548-1
 
@@ -80,16 +84,13 @@ defaults:
 pagination:
   enabled      : true
   debug        : false
-  collection   : 'posts'
   per_page     : 4
   permalink    : "/page/:num/"
   title        : ":title - Page :num of :max"
   limit        : 0
   sort_field   : "date"
   sort_reverse : true
-  category: 'posts'
-  tag: ''
-  locale: '' 
+
   
 # Plugin: Auto Pages (jekyll-paginate-v2)
 autopages:
