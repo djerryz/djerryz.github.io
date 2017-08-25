@@ -5,6 +5,8 @@ my_variable2: sidebar.html
 my_variable3: note-icon.html
 main_title: "Djerry介绍"
 main_content: "在2017年的夏季。我搭建了这个网站来分享学习中的经验，灵感和细节。BLOG归纳总结学习内容,GAME是一些有趣游戏，MUSIC收集有Hardstyle风格的音乐。希望你能喜欢:)。"
+pagination: 
+  enabled: true
 ---
 <!DOCTYPE html>
 <html lang="en-us">
@@ -112,7 +114,8 @@ main_content: "在2017年的夏季。我搭建了这个网站来分享学习中�
 			  <div class="header">
 			  <h3>TYPE</h3>
 			  <h2 style="font-size:3rem;">BLOG</h2>
-			  <span style="color:#a2a2b0">最近更新:{% assign date=(site.posts)[0]).date %}{{date | date_to_string}}</span>
+			  112{{paginator}}
+			  <span style="color:#a2a2b0">最近更新:09 Apr 2017</span>
 			  </div>
 			  <a href="/blog" class="btn-in btn-same">See More</a>
 			   <canvas style="display: block;"></canvas>

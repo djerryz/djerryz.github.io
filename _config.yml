@@ -64,13 +64,12 @@ defaults:
       breadcrumbs:
         - label: "study"
           url: /study/
-
-# Plugins
-plugins:
-  - jekyll-sitemap
-  - jemoji
-  - jekyll-seo-tag
-  - jekyll-paginate-v2
+  # Pages
+  - scope:
+      path: _pages
+      type: pages
+    values:
+      layout: page
 
 # Plugin: Pagination (jekyll-paginate-v2)
 pagination:
