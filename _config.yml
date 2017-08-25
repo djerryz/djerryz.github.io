@@ -79,7 +79,7 @@ defaults:
         - label: "study"
           url: /study/
 # Plugins
-gems:
+plugins:
   - jekyll-sitemap
   - jemoji
   - jekyll-seo-tag
