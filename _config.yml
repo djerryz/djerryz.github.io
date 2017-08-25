@@ -9,46 +9,32 @@ kramdown:
   smart_quotes           : lsquo,rsquo,ldquo,rdquo
   enable_coderay         : false
 highlighter              : rouge
+keep_files:
+  - .git
+include:
+  - _pages
 
 # Setup
-title:            Djerry
-tagline:          'Djerry Security'
+title:                Djerry
+tagline:             'Djerry Security'
 description-en:      'Devote to Information Security&Countermeasure Research'
 description-ch:      '致力于信息安全和对抗技术研究'
-url:              djerrystyle.github.io
-baseurl:          /
-note_title: "最新状态"
-note_content: "Do u Improve Ur Design,Or u do SOmE news"
-note_time: "8月 16号"
+url:                  djerrystyle.github.io
+baseurl:              /
+note_title:           "最新状态"
+note_content:         "Do u Improve Ur Design,Or u do SOmE news"
+note_time:            "8月 16号"
 
 author:
-  name:           'Djerry'
-  url:            djerrystyle.github.io
+  name:               'Djerry'
+  url:                djerrystyle.github.io
 
-# Plugin: Pagination (jekyll-paginate-v2)
-pagination:
-  enabled      : true
-  debug        : false
-  per_page     : 4
-  permalink    : "/page/:num/"
-  title        : ":title - Page :num of :max"
-  limit        : 0
-  sort_field   : "date"
-  sort_reverse : true
-  
-# Plugin: Auto Pages (jekyll-paginate-v2)
-autopages:
-  enabled      : false
-  categories:
-    enabled    : false
-  collections:
-    enabled    : false
-  tags:
-    enabled    : false
-    layouts:
-      - "autopage_tags.html"
-    title      : ":tag" # :tag is replaced by the tag name
-    permalink  : "/tag/:tag"
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jemoji
+  - jekyll-seo-tag
+  - jekyll-paginate-v2
 
 googleAnalyticsId: UA-102824548-1
 
@@ -78,13 +64,32 @@ defaults:
       breadcrumbs:
         - label: "study"
           url: /study/
-# Plugins
-gems:
-  - jekyll-sitemap
-  - jemoji
-  - jekyll-seo-tag
-  - jekyll-paginate-v2
 
+# Plugin: Pagination (jekyll-paginate-v2)
+pagination:
+  enabled      : true
+  debug        : false
+  per_page     : 4
+  permalink    : "/page/:num/"
+  title        : ":title - Page :num of :max"
+  limit        : 0
+  sort_field   : "date"
+  sort_reverse : true
+  
+# Plugin: Auto Pages (jekyll-paginate-v2)
+autopages:
+  enabled      : false
+  categories:
+    enabled    : false
+  collections:
+    enabled    : false
+  tags:
+    enabled    : false
+    layouts:
+      - "autopage_tags.html"
+    title      : ":tag" # :tag is replaced by the tag name
+    permalink  : "/tag/:tag"
+     
 # Staticman
 staticmanUrl: https://api.staticman.net/v2/entry/djerrystyle/djerrystyle.github.io/master/comments
 
