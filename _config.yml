@@ -41,7 +41,7 @@ plugins:
   - jemoji
   - jekyll-seo-tag
   # - jekyll-paginate-v2
-
+#gemfile主要用于本地，使用bundler就一次安装了其下全部依赖
 gems:
     - jekyll-paginate
     
