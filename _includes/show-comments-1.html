@@ -12,8 +12,8 @@ my_variable3: note-icon.html
           Comments
         </h2>
         {% assign comments = site.data.comments[page.slug] | where_exp: 'item', 'item.replying_to == blank' %}
-        {% for comment in comments %}
-		ccc{{comment}}
+		{% for commet in comments %}
+		ccc{{commet}}
           {% assign index       = forloop.index %}
           {% assign r           = comment.replying_to %}
           {% assign replying_to = r | to_integer %}
