@@ -1,5 +1,4 @@
 <section class="page__reactions">
-	{{site.data.comments[page.slug]}}
     {% if site.data.comments[page.slug] %}
       <!-- Start static comments -->
       <div id="comments" class="js-comments">
@@ -10,6 +9,7 @@
           Comments
         </h2>
         {% assign comments = site.data.comments[page.slug] | where_exp: 'item', 'item.replying_to == blank' %}
+		{{comments}}
         {% for comment in comments %}
           {% assign index       = forloop.index%}
           {% assign r           = comment.replying_to %}
@@ -21,9 +21,9 @@
           {% assign message     = comment.message %}
           {% include show-comments-2.html index=index replying_to=replying_to avatar=avatar email=email name=name url=url date=date message=message%}
         {% endfor %}
+		{% include show-comments-2.html index=index replying_to=replying_to avatar=avatar email=email name=name url=url date=date message=message%}
       </div>
       <!-- End static comments -->
 	{% endif %}
-
 </section>
 
