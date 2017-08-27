@@ -120,7 +120,8 @@ $(function(){
 <nav class="pager">
   <ul>
     {% if page.previous %}
-      <li><a href="{{ page.previous.url }}" class="previous"><svg class="icon icon--arrow-left" width="16px" height="16px"><use xlink:href="/images/icons/icons.svg#icon-arrow-right"></use>
+      <li><a href="{{ page.previous.url }}" class="previous"><svg class="icon icon--arrow-left" width="16px" height="16px">
+	  <use xlink:href="/images/icons/icons.svg#icon-arrow-right"></use>
 	  </svg> {{ page.previous.title | markdownify | remove: '<p>' | remove: '</p>' }}</a></li>
     {% endif %}
     {% if page.next %}
