@@ -1,0 +1,118 @@
+<!--这儿不能用pjax获取思维导图，因为在sites中，不被生成，且定位困难-->
+<!--这儿用jekyll，除了给定值，用page.map(=mapjs/XX.html)还是capture组合，还是include或是相对include，还是用双引号，每次读取到mapjs/，就报没有include file错误-->
+<!--在完全更新gem，gem依赖，ruby和jekyll后，原因依旧。最终问题出在--》post下include关于page.map的值或是post先include了X.html，再在X.html下include了page.map都会爆语法错。但是在原文中使用inclde+page.map语法正常。且原文include了X，再在X下include了page.map也正常。关键在于一个使用layout，而原文在post属于content部分。而另一个是使用了include。layout下原文变量不能被include，而原文include的文件下可以include原文变量-->
+<link rel="stylesheet" type="text/css" href="/public/mind_map/mapjs-default-styles.css"/>
+<script>
+$(window).on("load",function(){
+	cd=1;
+	cp=1;
+	kh=0;
+	kw=0;
+	$('.mindlink--takiri').on('click',function(){
+		$('#show_mindmap').show();
+		if (!$('#show_mindmap').hasClass('isokymind')){
+			if ($(window).width()>768){
+				$('#show_mindmap').addClass('isokymind');
+				$('#show_mindmap').css({'height':$(window).height()});
+				var b=$('#container')[0].clientWidth/$(window).width();
+				cd=$('#container')[0].clientHeight/$(window).height();
+				if (b<cd){
+					cd=b
+				}
+				cp=cd;
+				$('#container').css({'transform': 'scale('+cd+')'});
+			}
+			kh=$('#container').height();
+			kw=$('#container').width();
+		}
+		$('html').scrollTop(0);
+		$('html').css({'overflow':'hidden'});
+	})
+	$('.but0').on('click',function(){	
+		$('#show_mindmap').hide();
+		$('html').css({'overflow':'auto'})
+	})
+	$('.but1').on('click',function(){	
+		$('#container').css({
+		'transform': 'scale('+cd+')'
+		});
+		if ($(window).width()<=768){
+			$('#container').css({
+				'height':kh/cd,
+				'width':kw/cd
+			});
+		}
+		cp=cd;
+	})
+	$('.but2').on('click',function(){
+		cp+=0.1;
+		$('#container').css({
+		'transform': 'scale('+cp+')'
+		});
+		if ($(window).width()<=768){
+			$('#container').css({
+				'height':kh/cp,
+				'width':kw/cp
+			});
+		}
+	})
+	$('.but3').on('click',function(){
+		if (cp>0.25){
+			cp-=0.1
+		}
+		$('#container').css({
+		'transform': 'scale('+cp+')'
+		});
+		if ($(window).width()<=768){
+			$('#container').css({
+				'height':kh/cp,
+				'width':kw/cp
+			});
+		}
+	})
+	if ($(window).width()>768){
+		$(document).mousemove(function(e) {
+			if (!!this.move) {
+				var posix = !document.move_target ? {'x': 0, 'y': 0} : document.move_target.posix,
+					callback = document.call_down || function() {
+						$(this.move_target).css({
+							'top': e.pageY - posix.y,
+							'left': e.pageX - posix.x
+						});
+					};
+
+				callback.call(this, e, posix);
+			}
+		}).mouseup(function(e) {
+			if (!!this.move) {
+				var callback = document.call_up || function(){};
+				callback.call(this, e);
+				$.extend(this, {
+					'move': false,
+					'move_target': null,
+					'call_down': false,
+					'call_up': false
+				});
+			}
+		});
+		$('#container').mousedown(function(e) {
+			var offset = $(this).offset();
+			this.posix = {'x': e.pageX - offset.left, 'y': e.pageY - offset.top};
+			$.extend(document, {'move': true, 'move_target': this});
+		});
+	}
+});
+</script>
+<div id="show_mindmap">
+<div id="testcontrols">
+<button class="but0 button">X</button>
+<button class="but1 button">0</button>
+<button class="but2 button">+</button>
+<button class="but3 button">-</button>
+</div>
+<!--这儿用include_relative，将思维的html放在posts文件夹下，出现乱序，article.html和文章全部乱序-->
+{% include mapjs/{{page.path | split:'/' | last | replace:'.md','.html'}} %}
+</div>
+<script>
+
+</script>

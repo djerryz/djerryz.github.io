@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us"><head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>
+    {% if page.title == "Home" %}
+      {{ site.title }} &middot; {{ site.tagline }}
+    {% else %}
+      {{ page.title }} &middot; {{ site.title }}
+    {% endif %}
+</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/1.css">
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/list-article.css">
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">  
+  <!-- jquery -->
+ <script src="/public/js/jquery-3.2.1.min.js"></script>
+	<script>
+	$(document).ready(function(){//$(window).on("load",function(){，原来的load方法在3版本改变:https://blog.jquery.com/2015/07/13/jquery-3-0-and-jquery-compat-3-0-alpha-versions-released/。这儿改用了ready，因为异步加载google-analysis，用onload会一直等待其完全加载完。ready只是DOM加载。
+	$('.loader_a').hide();
+	var c = document.getElementsByClassName('sidebar')[0].offsetWidth;
+	var d = document.body.offsetWidth;
+	var res = 1-c/d;
+	res = res.toFixed(2)*100;
+	var divOne=document.getElementById('divOne');
+	divOne.style.width=res+'%';
+	divOne.style.left=(100-res)+'%';
+	window.zhan=1;
+	window.view=1;
+	 });
+	</script>
+<!-- Global site tag (gtag.js) - Google Analytics 
+<script sync src="https://www.googletagmanager.com/gtag/js?id=UA-102824548-1"></script>
+google.js就是拷贝而来，但是该js又指向了另一JS，这个JS不能再拷贝，因为它还会去拉取另外的~-->
+<script sync src="/public/js/google.js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-102824548-1');
+</script>
+ 
+</head>

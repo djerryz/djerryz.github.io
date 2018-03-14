@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  {% include head.html %}
+  <head>
+  <link href="/public/css/loader.css" rel="stylesheet" type="text/css" />
+  <script src="/public/js/default.js"></script>
+  <script>	
+	function touchm (event){  
+            var event = event || window.event;    
+            event.preventDefault(); //阻止touchmove的默认动作
+     } 
+	function touche (event){  
+            var event = event || window.event;    
+            event.preventDefault(); //阻止touchend的默认动作
+			zhanyin();
+     } 
+  	function zhanyin(){
+	var labelm=document.getElementById('sidebar-checkbox');
+	var divm=document.getElementById('divOne');
+	//var a=document.getElementById('sidebar-toggle').innerHTML;
+	if(zhan==0){
+	labelm.checked=false;
+	divm.removeEventListener('touchmove',touchm); 
+	divm.removeEventListener('touchend',touche);
+	document.getElementsByClassName('wrap')[0].style.display="none";
+	zhan=1;
+	//document.getElementById('sidebar-toggle').innerHTML = '展开';//通过id获取label,修改值为2
+	//document.body.style.overflowY="scroll";
+	//document.getElementsByClassName('wrapall')[0].style.position = "relative";
+	}else{
+	labelm.checked=true;
+	document.getElementsByClassName('wrap')[0].style.display="block";
+	zhan=0;
+	//document.getElementById('sidebar-toggle').innerHTML = '隐藏';//通过id获取label,修改值为2
+	//document.body.style.overflowY="hidden";//隐藏且禁用
+	//document.getElementsByClassName('wrapall')[0].style.position = "fixed";
+	divm.addEventListener('touchmove',touchm); 
+	divm.addEventListener('touchend',touche);  
+	}
+	};
+	</script>
+  </head>
+  <body>
+  <div class="loader_a">
+	 <div class="loader">
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	</div>
+	</div>
+    <input class="sidebar-checkbox" id="sidebar-checkbox" type="checkbox">
+   {% include sidebar.html %}
+   <div class="sidebar-toggle-wrapper">
+      <button class="toggle navicon-button larr" type="button" onclick="zhanyin()">
+        <span class="toggle-inner">
+        <span class="sidebar-toggle-label">菜单</span> 
+		<span class="navicon"></span>
+		</span> 
+      </button>
+    </div>
+<div class="wrapall" id="wrapall">
+    <div class="masthead">
+       <div>
+          <h3 class="masthead-title">
+            <a href="/translation-napoleon-hill.html">Napoleon Hill</a>
+            <small>“If you can't do great things, do small things in a great way.” </small>
+			<a class="has-ajax">What&#39;s Next</a>
+          </h3>
+       </div>
+	   {% include note-icon.html %}
+    </div>
+	{{content}}
+</div>
+	<label id="divOne" onclick="zhanyin()" class="wrap"></label>
+  </body>
+</html>

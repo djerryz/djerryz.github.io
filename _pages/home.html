@@ -1,0 +1,98 @@
+---
+title: 首页
+main_title: "Djerry介绍"
+main_content: "在2017年的夏季。我搭建了这个网站来分享学习中的经验，灵感和细节。BLOG归纳总结学习内容,GAME是一些有趣游戏，MUSIC收集有Hardstyle风格的音乐。希望你能喜欢:)。"
+pagination: 
+  enabled: true
+permalink: /home/
+---
+<script src="/public/js/all_redirect.js"></script>
+<script src="/public/js/index.js"></script>
+<link href="/public/css/index.css" rel="stylesheet" type="text/css" />
+      <div class="cover">
+		<div class="under"></div>
+        <aside class="sidebar-index">
+          <div class="index-logo">
+            <img src='/images/index/logo.png' />
+          </div>
+          <div class="index-item">
+            <header>
+              <h2 color="white">{{page.main_title}}</h2>
+            </header>
+            <p style="text-indent:2em;word-wrap:break-word;">{{page.main_content}}</p>
+          </div>
+        </aside>
+        <div class="stage">
+          <div class="prev-next">
+          <a class="previous" onclick="clicktomove(0);"></a> 
+          <a class="next" onclick="clicktomove(1);"></a></div>
+          <div class="inner-layer" data-depth="0.40">
+            <div class="slides">
+              <article class="onair-episode">
+			  <div class="header">
+			  <h3>TYPE</h3>
+			  <h2 style="font-size:3rem;">BLOG</h2>
+			  <span style="color:#a2a2b0">最近更新:09 Apr 2017</span>
+			  </div>
+			  <a id='th' href="/blog/" class="btn-in btn-same">See More</a>
+			   <canvas class="blog_canva"></canvas>
+              </article>
+              <article class="onair-episode">
+			      <div class="header">
+			  <h3>TYPE</h3>
+			  <h2 style="font-size:3rem;">HACK</h2>
+			  <span style="color: #0497db;text-shadow: #6f0303 2px 0 0;">update-time:July 23st,2017</span>
+			  </div>
+			  <a href="/" class="btn-in btn-same">See More</a>
+               <img src="/images/index/life.jpg" height="100%" width="100%"/>
+              </article>
+			  <article class="onair-episode">
+			        <div class="header">
+			  <h3>TYPE</h3>
+			  <h2 style="font-size:3rem;">MUSIC</h2>
+			  <span style="color: #f8e136;text-shadow: #058020 2px 0 0;">update-time:July 23st,2017</span>
+			  </div>
+			  <a href="/" class="btn-in btn-same">See More</a>
+                <img src="/images/index/music.png" height="100% !important" width="100%" />
+              </article>
+              <article class="onair-episode last-art">
+				<div class="header">
+			    <label id="preview" class="div-center" onclick="preview()">模块预览</label>
+				<h2 style="margin-top:52%;">LOCK</h2>
+				</div>
+                <img class="lock" src="/images/index/lock.png"/>
+				<div class="input-container" style="position: relative;">
+				<input class="index-lock" placeholder="Enter password"></input>
+				</div>
+				<a onclick="preview()" class="btn-lock btn-same" >Launch</a>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+	<div class="header" id="de_tips" onclick="preview()"><h2>功能开发中！！！</h2></div>
+<script>
+/*try{
+	abc();
+}catch{
+	console.log(123);
+}//后退按键，调用缓存，测试不会触发以下四个事件，则用这种办法使得触发abc函数
+$(window).on("load",function() {
+console.log("Load Event");
+}).ready(function () {
+console.log("Ready Event");
+}).bind("pageshow", function() {
+console.log("PageShow Event");
+}).bind("pagehide", function() {
+console.log("PageHide Event");
+});
+这儿改用将script放在最下方，即可后退后触发,放在try免得爆出not define*/
+try{
+	abc();
+	$('.stage').mousemove(function(e){
+		showa(e)
+	});
+}catch(err){
+	console.log('error');
+}
+</script>

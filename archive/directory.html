@@ -1,0 +1,170 @@
+<script src="/public/js/all_redirect.js"></script>
+<title>分类阅读·Djerry</title>
+<link rel="stylesheet" href="/public/css/navigation.css">
+<link href="/public/css/directory-style.css" rel="stylesheet">
+<script>
+$(function(){//这儿不触发window.om("load")～，因而改为用ready
+	setTimeout(connectImage,500);//不延迟，height错误
+	blogImageHover();
+});
+$(window).resize(function() {
+	$('.blog_content_image').unbind('mouseenter');
+	$('.blog_content_image').unbind('mouseleave');
+	connectImage();
+	blogImageHover();
+});
+function blogImageHover() {
+	var blogMinHeight = $('.blog_content_inner').width()*135/560;
+	var blogMaxHeight = $('.blog_content_inner').width()*215/560;
+	if($('body').width() < 960) {
+		$('.blog_content_image').height(blogMaxHeight)
+			.find('.blog_content_slider').css({marginTop:0});
+	}
+	else {
+		$('.blog_content_image').height(blogMinHeight)
+			.find('.blog_content_slider').css({marginTop:-40});
+		$('.blog_content_image').hover(function(){
+			$(this).stop(true).animate({height:blogMaxHeight}, 1000, 'easeOutBounce');
+			$(this).find('.blog_content_slider').stop(true).animate({marginTop: 0}, 1000, 'easeOutBounce');	
+		}, function(){
+			$(this).stop(true).animate({height:blogMinHeight}, 500, 'easeOutQuint');
+			$(this).find('.blog_content_slider').stop(true).animate({marginTop: -40}, 500, 'easeOutQuint');	
+		});
+	}
+}
+function connectImage(){
+	$('.image_rollover_bottom').unbind('hover').conRollover('bottom');
+}
+$.fn.conRolloverWithCheck = function(a) {
+	if (!a) var a =false;
+	$(this).find('.image_rollover_bottom').unbind('hover').conRollover('bottom',a);
+}
+$.fn.conRollover = function(a) {
+	var lstart,lend;
+	var tstart,tend;
+	var type;
+	type = arguments[0];
+	var counter = true;
+	if(arguments.length>1 && arguments[1]==true){
+		bugFix=true;
+	}
+	switch (type)
+	{
+		case 'bottom' : lstart='0'; lend='0'; tstart='100%'; tend='0'; break;
+		case 'content' :cnt=true; break;
+	}
+	$(this).each(function(){
+		if($(this).find('.image_roll_zoom').length>0) {
+			$(this).find('.image_roll_zoom').remove();
+		}	
+		if(type != 'content') $(this).append('\n<div class="image_roll_zoom"><div style="padding:'+($(this).height()/2 - ($(this).height()>=150 ? 25 : $(this).height()/8)) +'px 0; font-size:'+(($(this).height()>=150 ? 50 : $(this).height()/4))/1.5+'px;  height:'+($(this).height()>=150 ? 50 : $(this).height()/4)+'px" class="image_roll_text">'+$(this).attr('data-description')+'</div></div>');
+	})
+	$(this).hover(function(){
+			$(this).find('.image_roll_zoom').stop(true, true).animate({left: lend, top:tend},400);
+ 		},function() {
+			$(this).find('.image_roll_zoom').stop(true).animate({left:lstart, top:tstart},400);
+    });
+} 
+</script>
+<div class="masthead-bar">
+	<div class="masthead-bar__face">
+		<div class="masthead-bar__menu">
+		<span class="masthead-bar__menu-item2">
+		<a class="link link--active2" href="/blog"><<返回上层</a>
+		</span>
+		<span class="masthead-bar__menu-item3">
+		<a class="link link--active">当前位置:</a>
+		</span>
+		<span class="masthead-bar__menu-item">
+		<a class="link" href="/">首页</a>
+		</span>
+		<span class="masthead-bar__menu-item">
+		<a class="link" href="/blog">Blog</a>
+		</span>
+		<span class="masthead-bar__menu-item">
+		<a class="link" href="">分类阅读</a>
+		</span>
+		</div>
+		</div>
+</div>
+<section id="content">
+
+<h3 class="marg-top40">分类阅读</h3>
+<div class="con_border"></div>
+
+<div class="column column-1-3  marg-top">
+	<a class="image_rollover_bottom marg-bott" data-description="READ MORE" href="services_page.html">
+		<img src="/images/blog-directory/kaoyan.jpg" alt="" />
+	</a>
+	<div class="blog_content_info con_borderGray">
+		<div class="blog_content_date">0<br /><span>篇</span></div>
+		<a href="blog_post.html" class="comment_number">0</a>
+		<div class="clear"></div>
+	</div>
+	<div class="blog_content_excerpt">
+		<div class="padd-bott5 bold colorBlack">研</div>
+		针对考研科目知识的归纳和整理。如英语词汇和语法收集，数学经典例题，计算机综合题目解析等。
+	</div>
+	
+</div>
+
+<div class="column column-1-3  marg-top">
+	<a class="image_rollover_bottom marg-bott" data-description="READ MORE" href="services_page.html">
+		<img src="/images/blog-directory/translate.png" alt="" />
+	</a>
+	<div class="blog_content_info con_borderGray">
+		<div class="blog_content_date">0<br /><span>篇</span></div>
+		<a href="blog_post.html" class="comment_number">0</a>
+		<div class="clear"></div>
+	</div>
+	
+	<div class="blog_content_excerpt">
+		<div class="padd-bott5 bold colorBlack">译</div>
+		自己翻译的文章。如拿破仑·希尔，以及专业知识相关的文章。
+		</div>
+</div>
+<div class="column column-1-3 column-last  marg-top">
+	<a class="image_rollover_bottom marg-bott" data-description="READ MORE" href="services_page.html">
+		<img src="/images/blog-directory/university.jpg" alt="" />
+	</a>
+	<div class="blog_content_info con_borderGray">
+		<div class="blog_content_date">0<br /><span>篇</span></div>
+		<a href="blog_post.html" class="comment_number">15</a>
+		<div class="clear"></div>
+	</div>
+	
+	<div class="blog_content_excerpt">
+		<div class="padd-bott5 bold colorBlack">学</div>
+		大学所学的学科和知识。如多次的工程实践，综合设计等。
+		</div>
+</div>
+<div class="column column-1-3 column-last  marg-top">
+	<a class="image_rollover_bottom marg-bott" data-description="READ MORE" href="services_page.html">
+		<img src="/images/blog-directory/reverse.jpg" alt="" />
+	</a>
+	<div class="blog_content_info con_borderGray">
+		<div class="blog_content_date">0<br /><span>篇</span></div>
+		<a href="blog_post.html" class="comment_number">0</a>
+		<div class="clear"></div>
+	</div>
+	
+	<div class="blog_content_excerpt">
+		<div class="padd-bott5 bold colorBlack">渗/逆</div>
+		渗透和逆向方面的知识。
+	</div>
+</div>
+<div class="column column-1-3 column-last  marg-top">
+	<a class="image_rollover_bottom marg-bott" data-description="READ MORE" href="services_page.html">
+		<img src="/images/blog-directory/AD.jpg" alt="" />
+	</a>
+	<div class="blog_content_info con_borderGray">
+		<div class="blog_content_date">0<br /><span>篇</span></div>
+		<a href="blog_post.html" class="comment_number">0</a>
+		<div class="clear"></div>
+	</div>
+	<div class="blog_content_excerpt">
+		<div class="padd-bott5 bold colorBlack">实战</div>
+		实验吧的题目,脚本程序的编写（优化方案），渗透/逆向实战项目。
+	</div>
+</div>
+</section>

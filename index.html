@@ -1,0 +1,113 @@
+---
+title: 首页
+my_variable1: head.html
+my_variable2: sidebar.html
+my_variable3: note-icon.html
+main_title: "Djerry介绍"
+main_content: "在2017年的夏季。我搭建了这个网站来分享学习中的经验，灵感和细节。BLOG归纳总结学习内容,GAME是一些有趣游戏，MUSIC收集有Hardstyle风格的音乐。希望你能喜欢:)。"
+pagination: 
+  enabled: true
+---
+<!DOCTYPE html>
+<html lang="en-us">
+ {% include {{ page.my_variable1 }} %}
+<head>
+    <meta charset="utf-8" />
+	<script src="/public/js/main.js"></script>
+	<link href="/public/css/music.css" rel="stylesheet" type="text/css" />
+	<script src="/public/js/music.js"></script>
+	<link href="/public/css/loader.css" rel="stylesheet" type="text/css" />
+	<script src="/public/js/jquery.pjax.js"></script>
+	<script type="text/javascript"><!--注意pjax拉取的页面不要有head头，不然就会跳转，而不是ajax-->
+	function GetUrlPara()
+　　{
+　　　　var url = document.location.toString();
+　　　　var arrUrl = url.split("?");
+　　　　var para = arrUrl[1];
+　　　　return para;
+　　}
+	function GetUrlRelativePath()
+	{
+	　　　　var url = document.location.toString();
+	　　　　var arrUrl = url.split("//");
+	　　　　var start = arrUrl[1].indexOf("/");
+	　　　　var relUrl = arrUrl[1].substring(start);//stop省略，截取从start开始到结尾的所有字符
+	　　　　if(relUrl.indexOf("?") != -1){
+	　　　　　　relUrl = relUrl.split("?")[0];
+	　　　　}
+	　　　　return relUrl;
+	}
+	$(function(){
+		$.pjax.defaults.timeout = 4000//这儿非常重要。默认是650ms,当时延迟基本1s以上，导致网页一直刷刷新，导致业务逻辑混乱和视图效果一直刷新。
+		$('.sidebar-toggle-wrapper').hide();
+		var urlw='/home/';
+		if (GetUrlPara()!=null){
+			urlw=GetUrlPara();
+		}
+		$.pjax.defaults.replace = true//避免在记录出现/?blog等
+		$.pjax({
+				url: urlw,
+				container: '#replace_here'
+		});
+		$.pjax.defaults.replace = false
+		$(document).pjax('a', '#replace_here');
+		$(document).on('pjax:complete', function() {
+		  if (GetUrlRelativePath()=='/home/'){
+			$('.sidebar-toggle-wrapper').hide();
+		  }else{
+			$('.sidebar-toggle-wrapper').show();
+		  } 
+		})
+	});
+	</script>
+ </head>
+ <body class="main_m">
+	 <div class="loader_a">
+	 <div class="loader">
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  <div class="dot"></div>
+	  
+	</div>
+	</div>
+	<input class="sidebar-checkbox" id="sidebar-checkbox" type="checkbox" /> 
+	{% include {{ page.my_variable2 }} %}
+    <div class="wrapall">
+      <div class="masthead-index" style="">
+		<div class="masthead-title">
+        <h3>
+        <a href="/translation-napoleon-hill.html">Napoleon Hill</a> 
+        <small>“If you can&#39;t do great things, do small things in a great way.”</small>
+		<a class="has-ajax" style="margin-top:-1rem;">What&#39;s Next</a>
+		</h3>
+		</div>
+      </div>
+	 {% include {{ page.my_variable3 }} %}
+      <div id="replace_here">	
+      </div>
+    </div>
+	<footer class="footer down"><!--不要放在wrapall下一起位移：http://blog.csdn.net/zhanghuiqi205/article/details/71250018，否则fixed出问题-->
+		<div class="top">
+		<div class="player">
+		<a>正在播放:<span id="now_play_is"></span></a><span class="text" style="float:right">Proudly created by<a href="http://www.beerntea.com">BEER N TEA</a></span> 
+		</div>
+		</div>
+		<div class="playlist">
+		<div class="mCSB_container">
+		</div>
+		</div>
+	</footer>
+	<div class="sidebar-toggle-wrapper">
+      <button class="toggle navicon-button larr" type="button" onclick="zhanyin()">
+        <span class="toggle-inner">
+        <span class="sidebar-toggle-label">菜单</span> 
+		<span class="navicon"></span>
+		</span> 
+      </button>
+    </div>
+	<label class="sidebar-toggle" id="sidebar-toggle" onclick="zhanyin()" ></label>
+    <label id="divOne" onclick="zhanyin()" class="wrap"></label>
+  </body>
+</html>

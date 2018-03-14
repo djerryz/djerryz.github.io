@@ -1,0 +1,798 @@
+﻿/* Prevent scroll on narrow devices */
+*,:after,:before {
+ box-sizing:inherit
+}
+html {
+ box-sizing:border-box;
+ -ms-text-size-adjust:100%;
+  height:100%; 
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+@media screen and (min-width:1280px) {
+ html {
+  font-size:20px;
+ }
+}
+@media screen and (min-width:320px){
+html {
+    font-size: calc(16px + 4 * ((100vw - 320px) / 960));
+}
+}
+body{/*这儿不要设置height为100%，否则无论是on,bind还是scroll都无法使得图片滚动：http://blog.csdn.net/friendan/article/details/51629411*/
+   overflow-x: hidden !important;
+   width:100%;
+   background-color: #fff;
+   -webkit-text-size-adjust: 100%;
+   -ms-text-size-adjust: 100%;
+    margin:0;
+	line-height:1.55
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "PT Serif", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -.025rem;
+}
+
+
+/*
+ * Wrapper
+ *
+ * The wrapper is used to position site content when the sidebar is toggled. We
+ * use an outter wrap to position the sidebar without interferring with the
+ * regular page content.
+ */
+
+
+
+
+/*
+ * Container
+ *
+ * Center the page content.
+ */
+
+
+
+/*
+ * Masthead
+ *
+ * Super small header above the content for site name and short description.
+ */
+/*
+ * Sidebar
+ *
+ * Flexible banner for housing site name, intro, and "footer" content. Starts
+ * out above content in mobile and later moves to the side with wider viewports.
+ */
+
+
+
+/*
+ * Sidebar
+ *
+ * The sidebar is the drawer, the item we are toggling with our handy hamburger
+ * button in the corner of the page.
+ *
+ * This particular sidebar implementation was inspired by Chris Coyier's
+ * "Offcanvas Menu with CSS Target" article, and the checkbox variation from the
+ * comments by a reader. It modifies both implementations to continue using the
+ * checkbox (no change in URL means no polluted browser history), but this uses
+ * `position` for the menu to avoid some potential content reflow issues.
+ *
+ * Source: http://css-tricks.com/off-canvas-menu-with-css-target/#comment-207504
+ */
+
+/* Style and "hide" the sidebar */
+
+.sidebar {
+  overflow-x: hidden;
+  overflow-y: scroll; 
+  z-index: 10;/*叠层权值*/
+  position: fixed;
+  left: -12.5rem;/*多0.1rem，解决边缘白线问题*/
+  width: 12.4rem;
+  height:100%;
+  /*visibility: hidden;*/
+  /*color:#2C0808;/*rgba(255,255,255,.6);*/
+  background-color:rgba(255,255,255,0) !important; /*.6为透明度*/
+  -webkit-transition: all .4s ease-in-out;
+          transition: all .4s ease-in-out;
+  -webkit-text-stroke: 0.2px white;	
+  display: block;
+  color: white;
+  cursor: pointer;
+}
+/*chrmoe下的sidebar有效。若不设置，滚动条右边紧贴的div出现白线。firefox和edge不需要设置*/
+.sidebar::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+.sidebar::-webkit-scrollbar-thumb{
+	border-radius: 10px;
+	background-color: #FFF;
+	background-image: -webkit-gradient(linear,
+									   40% 0%,
+									   75% 84%,
+									   from(#4D9C41),
+									   to(#19911D),
+									   color-stop(.6,#54DE5D))
+}
+.sidebar img{
+	min-height: 100%;
+	width: auto;
+}
+/* Sidebar content */
+/*text-shadow:x位移 y位移 模糊程度 颜色 */ 
+.sidebar a {
+  -webkit-text-stroke: 0.2px red;
+  text-shadow:5px 2.5px 2px #DB3E53; 	
+  color: #FEB938 !important;
+  text-decoration:none;
+  transition: all .1s ease-in-out !important;
+}
+.sidebar-item {
+  padding: 1rem;
+}
+.sidebar-item p:last-child {
+  margin-bottom: 0;
+}
+
+/* About section */
+.sidebar-about h1 {
+  color: #fff;
+  margin-top: 0;/*上边界*/
+  font-family: "Abril Fatface", serif;
+  font-size: 3rem;
+} 
+/* Sidebar nav */
+.sidebar-nav {
+  height:50%;
+  margin-bottom: 1rem;/*下边界*/
+}
+.sidebar-nav-item {
+  display: block;
+  line-height: 1.75;
+}
+.sidebar a:hover{
+text-decoration: underline;
+}
+.sidebar a:focus{
+ border:1px solid pink;
+ outline:none;
+ box-shadow:0 0 10px pink;
+}
+/*nav end:sidebar nav all come from hype*/
+
+/* Sticky sidebar
+ *
+ * Add the `sidebar-sticky` class to the sidebar's container to affix it the
+ * contents to the bottom of the sidebar in tablets and up.
+ !!come from "hype"*/
+
+.sidebar-sticky {
+    position: absolute;
+    right:  1rem;
+    top: 2.1rem;
+    left:   1rem;
+}
+
+/* Hide the sidebar checkbox that we toggle with `.sidebar-toggle` */
+#sidebar-checkbox {
+ display: none;
+}
+
+/* Style the `label` that we use to target the `.sidebar-checkbox` */
+.masthead {
+	background-color: white;
+	width: 100%;
+	z-index: 10;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #eee;
+}
+/* Slide effect
+ *
+ * Handle the sliding effects of the sidebar and content in one spot, seperate
+ * from the default styles.
+ *
+ * As an a heads up, we don't use `transform: translate3d()` here because when
+ * mixed with `position: fixed;` for the sidebar toggle, it creates a new
+ * containing block. Put simply, the fixed sidebar toggle behaves like
+ * `position: absolute;` when transformed.
+ *
+ * Read more about it at http://meyerweb.com/eric/thoughts/2011/09/12/.
+ */
+
+.wrapall,
+.sidebar {
+  -webkit-backface-visibility: hidden;
+      -ms-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.wrapall {
+  -webkit-transition: -webkit-transform .4s ease-in-out;
+          transition: transform .4s ease-in-out;
+}
+
+#sidebar-checkbox:checked + .sidebar {
+  visibility: visible;
+}
+#sidebar-checkbox:checked ~ .sidebar{
+	-webkit-transform: translateX(12.4rem);
+      -ms-transform: translateX(12.4rem);
+          transform: translateX(12.4rem);
+}
+
+#sidebar-checkbox:checked ~ .wrapall {	
+	-webkit-transform: translateX(12.4rem);
+      -ms-transform: translateX(12.4rem);
+          transform: translateX(12.4rem);/*注意，这儿.wrapall下不能包含.sidebar-toggle，否则这两个类都不会有效果*/
+}
+
+/*
+ * Posts and pages
+ *
+ * Each post is wrapped in `.post` and is used on default and post layouts. Each
+ * page is wrapped in `.page` and is only used on the page layout.
+ */
+
+
+/* Blog post or page title */
+.page-title,
+.post-title,
+.post-title a {
+  color: #303030;
+}
+.page-title,
+.post-title {
+  margin-top: 0;
+}
+
+/* Meta data line below post title */
+.post-date {
+  display: block;
+  margin-top: -.5rem;
+  margin-bottom: 1rem;
+  color: #9a9a9a;
+}
+
+/* Related posts */
+.related {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid #eee;
+}
+.related-posts {
+  padding-left: 0;
+  list-style: none;
+}
+.related-posts h3 {
+  margin-top: 0;
+}
+.related-posts li small {
+  font-size: 75%;
+  color: #999;
+}
+.related-posts li a:hover {
+  color: #268bd2;
+  text-decoration: none;
+}
+.related-posts li a:hover small {
+  color: inherit;
+}
+
+
+/*
+ * Pagination
+ *
+ * Super lightweight (HTML-wise) blog pagination. `span`s are provide for when
+ * there are no more previous or next posts to show.
+ */
+
+.pagination {
+  overflow: hidden; /* clearfix */
+  margin-left: -1rem;
+  margin-right: -1rem;
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  color: #ccc;
+  text-align: center;
+}
+
+/* Pagination items can be `span`s or `a`s */
+.pagination-item {
+  display: block;
+  padding: 1rem;
+  border: 1px solid #eee;
+}
+.pagination-item:first-child {
+  margin-bottom: -1px;
+}
+
+/* Only provide a hover state for linked pagination items */
+a.pagination-item:hover {
+  background-color: #f5f5f5;
+}
+
+@media (min-width: 30em) {
+  .pagination {
+    margin: 3rem 0;
+  }
+  .pagination-item {
+    float: left;
+    width: 50%;
+  }
+  .pagination-item:first-child {
+    margin-bottom: 0;
+    border-top-left-radius:    4px;
+    border-bottom-left-radius: 4px;
+  }
+  .pagination-item:last-child {
+    margin-left: -1px;
+    border-top-right-radius:    4px;
+    border-bottom-right-radius: 4px;
+  }
+}
+
+
+/*
+ * Reverse layout
+ *
+ * Flip the orientation of the page by placing the `.sidebar` and sidebar toggle
+ * on the right side.
+ *这个的侧栏是在右边的。Reverse：反向
+ */
+
+/*
+ * Themes
+ *
+ * Apply custom color schemes by adding the appropriate class to the `body`.
+ * Based on colors from Base16: http://chriskempson.github.io/base16/#default.
+ */
+
+/* Red */
+.theme-base-08 .sidebar,
+.theme-base-08 .sidebar-toggle:active,
+.theme-base-08 #sidebar-checkbox:checked ~ .sidebar-toggle {
+  background-color: #ac4142;
+}
+.theme-base-08 .container a,
+.theme-base-08 .sidebar-toggle,
+.theme-base-08 .related-posts li a:hover {
+  color: #ac4142;
+}
+
+/* Orange */
+.theme-base-09 .sidebar,
+.theme-base-09 .sidebar-toggle:active,
+.theme-base-09 #sidebar-checkbox:checked ~ .sidebar-toggle {
+  background-color: #d28445;
+}
+.theme-base-09 .container a,
+.theme-base-09 .sidebar-toggle,
+.theme-base-09 .related-posts li a:hover {
+  color: #d28445;
+}
+
+/* Yellow */
+.theme-base-0a .sidebar,
+.theme-base-0a .sidebar-toggle:active,
+.theme-base-0a #sidebar-checkbox:checked ~ .sidebar-toggle {
+  background-color: #f4bf75;
+}
+.theme-base-0a .container a,
+.theme-base-0a .sidebar-toggle,
+.theme-base-0a .related-posts li a:hover {
+  color: #f4bf75;
+}
+
+/* Green */
+.theme-base-0b .sidebar,
+.theme-base-0b .sidebar-toggle:active,
+.theme-base-0b #sidebar-checkbox:checked ~ .sidebar-toggle {
+  background-color: #90a959;
+}
+.theme-base-0b .container a,
+.theme-base-0b .sidebar-toggle,
+.theme-base-0b .related-posts li a:hover {
+  color: #90a959;
+}
+
+/* Cyan */
+.theme-base-0c .sidebar,
+.theme-base-0c .sidebar-toggle:active,
+.theme-base-0c #sidebar-checkbox:checked ~ .sidebar-toggle {
+  background-color: #75b5aa;
+}
+.theme-base-0c .container a,
+.theme-base-0c .sidebar-toggle,
+.theme-base-0c .related-posts li a:hover {
+  color: #75b5aa;
+}
+
+/* Blue */
+.theme-base-0d .sidebar,
+.theme-base-0d .sidebar-toggle:active,
+.theme-base-0d #sidebar-checkbox:checked ~ .sidebar-toggle {
+  background-color: #6a9fb5;
+}
+.theme-base-0d .container a,
+.theme-base-0d .sidebar-toggle,
+.theme-base-0d .related-posts li a:hover {
+  color: #6a9fb5;
+}
+
+/* Magenta */
+.theme-base-0e .sidebar,
+.theme-base-0e .sidebar-toggle:active,
+.theme-base-0e #sidebar-checkbox:checked ~ .sidebar-toggle {
+  background-color: #aa759f;
+}
+.theme-base-0e .container a,
+.theme-base-0e .sidebar-toggle,
+.theme-base-0e .related-posts li a:hover {
+  color: #aa759f;
+}
+
+/* Brown */
+.theme-base-0f .sidebar,
+.theme-base-0f .sidebar-toggle:active,
+.theme-base-0f #sidebar-checkbox:checked ~ .sidebar-toggle {
+  background-color: #8f5536;
+}
+.theme-base-0f .container a,
+.theme-base-0f .sidebar-toggle,
+.theme-base-0f .related-posts li a:hover {
+  color: #8f5536;
+}
+
+
+/*
+ * Overlay sidebar
+ *
+ * Make the sidebar content overlay the viewport content instead of pushing it
+ * aside when toggled.
+ */
+
+.sidebar-overlay #sidebar-checkbox:checked ~ .wrap {
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+}
+.sidebar-overlay #sidebar-checkbox:checked ~ .sidebar-toggle {
+  box-shadow: 0 0 0 .25rem #fff;
+}
+.sidebar-overlay #sidebar-checkbox:checked ~ .sidebar {
+  box-shadow: .25rem 0 .5rem rgba(0,0,0,.1);
+}
+
+/* Only one tweak for a reverse layout */
+.layout-reverse.sidebar-overlay #sidebar-checkbox:checked ~ .sidebar {
+  box-shadow: -.25rem 0 .5rem rgba(0,0,0,.1);
+}
+.wrapall {
+    position: relative;
+	height: 100%;
+}
+.wrap {
+display:none;
+position: fixed;
+right: 0;
+bottom: 0;
+left: 0;
+height: 100%;
+z-index: 4;
+}
+.masthead-title{
+margin-left: auto;
+margin-right: auto;
+max-width: 38rem;
+padding-left: 1rem;
+padding-right: 1rem;
+}
+/*喇叭*/
+@media only screen and (min-width:768px){
+.has-ajax{
+	display: block;
+}
+.news {
+	display:block;
+}
+.news {
+	display:none;
+	position:absolute;
+	top: 3.5rem;
+	right: 1.8rem;
+	width:300px;
+	background-color:#FFF;
+	opacity:0;
+	z-index:0;
+	filter:alpha(opacity=0);
+	-webkit-transition:all .3s;
+	-moz-transition:all .3s;
+	-o-transition:all .3s;
+	-ms-transition:all .3s;
+	transition:all .3s;
+}
+.news header{
+	margin: 0 0 3px 0;
+	padding: 15px 15px 13px 20px;
+	border-bottom: 1px solid #eaeaec;
+	position: relative;
+}
+.news header a{
+	float: right;
+	font-size: 21px;
+	font-weight: bold;
+	line-height: 1;
+	color: #000;
+	text-shadow: 0 1px 0 #fff;
+}
+.news header h1{
+	margin: 0;
+	padding: 0;
+	font-family: "Montserrat","montserratbold","Open Sans","Helvetica","Arial",sans-serif;
+	font-style: normal;
+	font-weight: 700;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-stroke: 0;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-rendering: optimizelegibility;
+	font-weight: bold;
+	font-size: 18px;
+}
+.news article p{
+	margin: 15px 20px;
+	font-size: 15px;
+	line-height: 20px;
+	max-height: 80px;
+	color: #a2a2b0;
+}
+.news footer{
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 47px;
+	background-color: white;
+	-webkit-box-shadow: 0 -1px 0 0 rgba(0,0,0,0.15);
+	-moz-box-shadow: 0 -1px 0 0 rgba(0,0,0,0.15);
+	box-shadow: 0 -1px 0 0 rgba(0,0,0,0.15);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user-select: none;
+	padding: 15px 20px 0;
+	font-size: 14px;
+}
+.news footer a{
+	color: #f42d6a;
+	float: right;
+	cursor: pointer;
+}
+@font-face {
+  font-family: 'icomoon';
+  src:  url('/images/fonts/icomoon.eot?tobgg2');
+  src:  url('/images/fonts/icomoon.eot?tobgg2#iefix') format('embedded-opentype'),
+    url('/images/fonts/icomoon.ttf?tobgg2') format('truetype'),
+    url('/images/fonts/icomoon.woff?tobgg2') format('woff'),
+    url('/images/fonts/icomoon.svg?tobgg2#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.glyphicon{
+	font-family: 'icomoon' !important;
+}
+.glyphicon-heart:before{
+	content: "\e9da";
+}
+.source{
+	float: left;
+	color: #cfd0d4;
+}
+.has-ajax{
+	float:right;
+	position: relative;
+	width: 2rem;
+	height:3rem;
+	padding: 0;
+	overflow: hidden;
+	opacity: .2;
+	filter: alpha(opacity=20);
+	-webkit-transition: opacity .3s;
+	-moz-transition: opacity .3s;
+	-o-transition: opacity .3s;
+	-ms-transition: opacity .3s;
+	transition: opacity .3s;
+	background: no-repeat center center;
+	text-indent: -9999px;
+	background-image: url('/images/metabar-social-icon.png');
+	margin-top: -0.5rem;
+}
+.close{
+	cursor: pointer;
+}
+ .navicon-button{
+	 margin: .90625rem 0;
+ }
+}
+@media only screen and (max-width:767px){
+.has-ajax{
+	display:none;
+}
+
+.news {
+	display:none;
+}
+.navicon-button{
+	 margin: 5rem 0;
+ }
+}
+/*切换按钮*/
+.sidebar-toggle-wrapper {
+	 top: 0;
+	 position:fixed;
+	 cursor:pointer;
+	 z-index:1000;
+}
+@media only screen and (min-width:768px){
+	.sidebar-toggle-wrapper {
+		right:18px;
+	}
+	.navicon-button {
+		margin-right: 3.5vw;
+	}
+}
+@media only screen and (max-width:768px){
+	.sidebar-toggle-wrapper {
+		right:0px;
+	}
+	.navicon-button {
+		margin-right: 0;
+	}
+}
+.sidebar-toggle-wrapper .toggle-inner {
+ display:-webkit-box;
+ display:-ms-flexbox;
+ display:flex;
+ -webkit-box-align:center;
+ -ms-flex-align:center;
+ align-items:center
+}
+.navicon-button {
+ display:inline-block;
+ position:relative;
+ padding:.90625rem 1rem;
+ transition:.25s;
+ border:0;
+ outline:none;
+ background-color:#fff;
+ line-height:1em;
+ cursor:pointer;
+ -webkit-user-select:none;
+ -moz-user-select:none;
+ -ms-user-select:none;
+ user-select:none;
+ font-size: 100%;
+}
+.navicon-button:focus {
+ border-color:rgba(34,40,49,.25);
+ outline:none;
+ box-shadow:0 0 10px rgba(34,40,49,.25)
+}
+.navicon-button.open {
+ background-color:#fff
+}
+.navicon-button .navicon:after,.navicon-button .navicon:before {
+ transition-duration:.25s
+}
+.navicon-button:hover {
+ transition-duration:.5s
+}
+.navicon-button:hover .navicon:after,.navicon-button:hover .navicon:before {
+ transition-duration:.25s
+}
+.navicon-button:hover .navicon:before {
+ top:.625em
+}
+.navicon-button:hover .navicon:after {
+ top:-.625em
+}
+.sidebar-toggle-label {
+ -webkit-box-ordinal-group:3;
+ -ms-flex-order:2;
+ order:2;
+ margin-left:.5rem;
+ font-family:Menlo,Consolas,Monaco,Courier New,Courier,monospace;
+ font-weight:700
+}
+.navicon {
+ position:relative;
+ transition-duration:.5s
+}
+
+.sidebar .contact-list li:not(:last-child) {
+ margin-bottom:.5rem
+}
+.sidebar .contact-list a {
+ display:block;
+ color:#b0b2b5;
+ text-decoration:none
+}
+.navicon,.navicon:after,.navicon:before {
+ width:1.75em;
+ height:.25em;
+ border-radius:1.75em;
+ background:#222831
+}
+.navicon:after,.navicon:before {
+ display:block;
+ position:absolute;
+ transition-duration:.5s .25s;
+ content:""
+}
+.navicon:before {
+ top:.5em
+}
+.navicon:after {
+ top:-.5em
+}
+.open:not(.steps) .navicon:after,.open:not(.steps) .navicon:before {
+ top:0!important
+}
+.open {
+ -webkit-transform:scale(1);
+ -ms-transform:scale(1);
+ transform:scale(1)
+}
+.open .navicon:after,.open .navicon:before {
+ transition-duration:.5s
+}
+.open.larr .navicon:after,.open.larr .navicon:before,.open.rarr .navicon:after,.open.rarr .navicon:before,.open.uarr .navicon:after,.open.uarr .navicon:before {
+ width:1.05em
+}
+.open.larr .navicon:before,.open.rarr .navicon:before,.open.uarr .navicon:before {
+ -webkit-transform:rotate(35deg);
+ -ms-transform:rotate(35deg);
+ transform:rotate(35deg);
+ -webkit-transform-origin:left top;
+ -ms-transform-origin:left top;
+ transform-origin:left top
+}
+.open.larr .navicon:after,.open.rarr .navicon:after,.open.uarr .navicon:after {
+ -webkit-transform:rotate(-35deg);
+ -ms-transform:rotate(-35deg);
+ transform:rotate(-35deg);
+ -webkit-transform-origin:left bottom;
+ -ms-transform-origin:left bottom;
+ transform-origin:left bottom
+}
+.open.uarr {
+ -webkit-transform:scale(1) rotate(90deg);
+ -ms-transform:scale(1) rotate(90deg);
+ transform:scale(1) rotate(90deg)
+}
+.open.rarr .navicon:before {
+ -webkit-transform:translate3d(1em,0,0) rotate(-35deg);
+ transform:translate3d(1em,0,0) rotate(-35deg);
+ -webkit-transform-origin:right top;
+ -ms-transform-origin:right top;
+ transform-origin:right top
+}
+.open.rarr .navicon:after {
+ -webkit-transform:translate3d(1em,0,0) rotate(35deg);
+ transform:translate3d(1em,0,0) rotate(35deg);
+ -webkit-transform-origin:right bottom;
+ -ms-transform-origin:right bottom;
+ transform-origin:right bottom
+}

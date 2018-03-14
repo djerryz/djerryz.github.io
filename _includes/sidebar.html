@@ -1,0 +1,30 @@
+<label class="sidebar"><img src="/images/sidebar.jpg">
+<!--看到：https://brajeshwar.github.io/entities/，这上面的content可以直接用，但是djhardwell上的编码都是/fxxx,明显超出了，这个网站：https://icomoon.io/app/#/select，可以制作，需要加载相应的css，分析后，它是通过拉去服务器的svg。则将这些svg下载～!-->
+  <div data-player="player" class="side_player" style="display:none">
+		<a data-player="prev-track" class="music_btn pre_btn"><svg><use xlink:href="/images/icons/music_char.svg#icon-previous2"></use></svg></a>
+		<a data-player="play" class="music_btn play-btn pauseplay"><svg><use xlink:href="/images/icons/music_char.svg#icon-play3"></use></svg></a>
+		<a data-player="pause" class="music_btn pause-btn"><svg><use xlink:href="/images/icons/music_char.svg#icon-pause2"></use></svg></a>
+		<a data-player="next-track" class="music_btn next-btn"><svg><use xlink:href="/images/icons/music_char.svg#icon-next2"></use></svg></a>
+		<a data-player="list" class="music_btn list-btn"><svg><use xlink:href="/images/icons/music_char.svg#icon-indent-increase"></use></svg></a>
+  </div>
+  <div class="sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="{{ site.baseurl }}">
+          {{ site.title }}
+        </a>
+      </h1>
+      <p class="lead">{{ site.description-ch }}</p>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">主页</a>
+	  <a class="sidebar-nav-item" href="/sidebar/article.html">博文</a>
+	  <a class="sidebar-nav-item" href="/sidebar/study.html">库</a>
+	  <a class="sidebar-nav-item" href="/sidebar/directory.html">目录(归档&分类)</a>
+      <a class="sidebar-nav-item" href="/sitemap/" style="display:inline">Sitemap</a>/<a class="sidebar-nav-item" href="/atom.xml" style="display:inline">RSS</a>
+      <a class="sidebar-nav-item" href="https://github.com/djerrystyle">GitHub项目</a>
+      <font size=2>Copyright &copy; 2017, Djerry Security. Awesome Inc. theme. Powered by 
+	  <a href="http://hyde.getpoole.com" target="_blank">Hyde</a>&<a href="http://lanyon.getpoole.com" target="_blank">Lanyon</a>&<a herf="https://mademistakes.com">Made Mistakes</a>&<a herf="https://eduardoboucas.com">eb.</a>&<a herf="https://djhardwell.com">djhardwell.</a>.<br>Photo by picateshackz.com</font>
+    </nav>
+  </div>
+</label>

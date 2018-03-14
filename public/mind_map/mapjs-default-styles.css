@@ -1,0 +1,197 @@
+.mapjs-node {
+	margin: 0;
+	padding: 7px;
+	z-index: 2;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	color: #4F4F4F;
+	cursor: hand;
+}
+.mapjs-node:focus {
+	outline: none;
+}
+.mapjs-node.droppable {
+	border: 1px solid red;
+}
+.mapjs-add-link {
+	cursor: crosshair;
+}
+.mapjs-add-link .mapjs-node {
+	cursor: alias;
+}
+.mapjs-node span[contenteditable=true] {
+	user-select: text;
+	-moz-user-select: text;
+	-webkit-user-select: text;
+	-ms-user-select: text;
+}
+.mapjs-node {
+	font-family: -apple-system, "Helvetica Neue", Roboto, Helvetica, Arial, sans-serif;
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 15px;
+}
+.mapjs-node span {
+	white-space: pre-wrap;
+	display: block;
+	max-width: 146px;
+	min-height: 1em;
+	min-width: 1em;
+	outline: none;
+}
+.mapjs-node.attr_group span {
+	min-height: 1.5em;
+}
+.mapjs-node.dragging {
+	opacity: 0.4;
+}
+.mapjs-node[mapjs-level="1"] {
+	background-color:#22AAE0;
+}
+.mapjs-decorations {
+	position: absolute;
+	display: block;
+	white-space: nowrap;
+}
+.mapjs-label {
+	background: black;
+	opacity: 0.5;
+	color: white;
+	display: inline-block;
+}
+.mapjs-hyperlink {
+	background-image: url(icon-link-inactive.svg);
+	width: 32px;
+	height: 32px;
+	background-size: 32px 32px;
+	background-repeat: no-repeat no-repeat;
+	display: inline-block;
+}
+.mapjs-hyperlink:hover {
+	background-image:url(icon-link-active.svg);
+}
+.mapjs-attachment {
+	background-image: url(icon-paperclip-inactive.svg);
+	width: 16px;
+	height: 32px;
+	background-size: 16px 32px;
+	background-repeat: no-repeat no-repeat;
+	display: inline-block;
+}
+.mapjs-attachment:hover{
+	background-image:url(icon-paperclip-active.svg);
+
+}
+.mapjs-draw-container {
+	position: absolute;
+	margin: 0px;
+	padding: 0px;
+	z-index: 1;
+}
+.mapjs-link {
+	stroke-width: 1.5px;
+	fill: none;
+}
+.mapjs-link-hit {
+	stroke: transparent;
+	stroke-width: 15;
+	cursor: crosshair;
+	fill: transparent;
+	cursor: crosshair;
+	transition: opacity .2s;
+}
+.mapjs-arrow {
+}
+.drag-shadow {
+	opacity: 0.5;
+}
+.mapjs-reorder-bounds {
+	stroke-width: 5px;
+	fill: none;
+	stroke: #000;
+}
+.mapjs-reorder-bounds {
+	z-index: 999;
+	background-image:url(chevron-left.svg);
+	width: 11px;
+	background-height: 100%;
+	background-width: 100%;
+	height: 20px;
+	background-repeat: no-repeat;
+}
+.mapjs-reorder-bounds[mapjs-edge="left"] {
+	background-image:url(chevron-right.svg);
+}
+.mapjs-reorder-bounds[mapjs-edge="top"] {
+	transform: rotate(-90deg);
+}
+#show_mindmap{
+		position:fixed;
+		top: 0px;
+		left: 0px;
+		z-index: 10000;
+		display:none;
+		background-color: white;
+		overflow:auto;
+		overflow-x: scroll;
+		width:100%;
+}
+#testcontrols {
+		height: 50px;
+		padding: 5px;
+		position:fixed;
+}
+#container {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		z-index: -1;
+		transform-origin: 0px 0px 0px;/*http://www.it1352.com/572011.html*/
+}
+.mind_con{
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		overflow:hidden !important;
+}
+.button {
+	  display: inline-block;
+	  width: 25px;
+	  max-height:30px;
+	  padding: 1px 5px;
+	  font-size: 20px;
+	  cursor: pointer;
+	  text-align: center;   
+	  text-decoration: none;
+	  outline: none;
+	  color: #fff;
+	  background-color: #4CAF50;
+	  border: none;
+	  border-radius: 8px;
+	  box-shadow: 0 9px #999;
+}
+.button:hover {background-color: #3e8e41}
+.button:active {
+	  background-color: #3e8e41;
+	  box-shadow: 0 5px #666;
+	  transform: translateY(4px);
+}
+@media only screen and (min-width:768px){
+	#container {
+			overflow:hidden !important;
+	}
+	#show_mindmap{
+		overflow-x: scroll;
+	}	
+}
+@media only screen and (max-width:768px){
+	#container {
+		overflow:auto;
+	}
+	#show_mindmap{
+		overflow:auto;	
+		height:100%;
+	}	
+}
