@@ -1,4 +1,4 @@
-# Jekyll configuration
+﻿# Jekyll configuration
 permalink                : /:categories/:title/
 lsi                      : false
 future                   : false
@@ -42,13 +42,13 @@ plugins:
   - jemoji
   - jekyll-seo-tag
   - jekyll-paginate-v2
-#  - jekyll-paginate
+  - jekyll-paginate
 #gemfile主要用于本地，使用bundler就一次安装了其下全部依赖
 #https://help.github.com/articles/configuring-jekyll-plugins/ 还未支持jekyll-paginate-v2，本地调试又必须要用它，不然报错~
 
 #一下两行是jekyll-paginate在对应网页，但是这个网页不能使用permalink
-#paginate: 4
-#paginate_path: "/archive/page:num/"
+paginate: 4
+paginate_path: "/archive/page:num/"
 
 googleAnalyticsId: UA-102824548-1
 
