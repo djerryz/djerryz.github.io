@@ -118,12 +118,14 @@ function preview(){
 	$('#de_tips').toggle();
 	$('.cover').toggleClass('de_tips');
 }
-$(window).on("load",function(){
-	$('.blog_canva').css({'height':'100%'});
-	abc();
+$(document).ready(function(){
 	if (!isMobileDevice()){
 		$('.stage').mousemove(function(e){//之前这儿是<div class="stage" onmousemove="showa(event);">,但是由于函数在js文件下，导致DOM加载而js文件函数没被加载，而报错：showa is not defined
 			showa(e)
 		});
 	}
+	abc();
+});
+$(window).on("load",function(){
+	$('.blog_canva').css({'height':'100%'});
 });

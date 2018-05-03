@@ -28,7 +28,7 @@ $(window).bind("load resize scroll",function() {
     $(".socials_background").css('background-position', '50% ' + (y-$(window).width()/3) + 'px');
 });
 $(function(){
-	original = new Image();
+	original = new Image();//这里使得每次打开post文章都会新加载图像，而不是cache，因而会触发onload事件
 	original.src = "{{page.image.original}}";//这条执行，就产生了网络行为
 	original.onload = function () {//页面或图像加载完成后立即发生
 		$('.this2').css({"background-image": "url('"+original.src+"')","opacity":"1"});//这里改变z-index会闪两下

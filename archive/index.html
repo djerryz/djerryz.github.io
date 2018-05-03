@@ -5,7 +5,6 @@ pagination:
 <script src="/public/js/all_redirect.js"></script>
 <link rel="stylesheet" href="/public/css/pager.css">
 <link rel="stylesheet" href="/public/css/navigation.css">
-<script src="/public/js/archive.js"></script>
 <style id="jjj"></style>
 <div class="list">
 <div class="masthead-bar">
@@ -39,7 +38,7 @@ background-image: url('{{post.image.thumbnail-2}}');
 </style>
 <article class="item" >
   <a href="{{ post.url }}" class="jj jj-{{forloop.index}} not-clear-2" >
-    <p style="display:none">{{post.image.cover-1}},{{post.image.cover-2}}</p>
+    <li style="display:none">{{post.image.cover-1}},{{post.image.cover-2}}</li>
     <div class="item__content">
       <h1 class="item__title">{{ post.title }}</h1>
       <div class="item__meta">
@@ -70,5 +69,58 @@ background-image: url('{{post.image.thumbnail-2}}');
 </nav>
 </div>
 </div>
-
-
+<!--这边不再放在一个单独的js下，因为1.cache不触发onload 2. $(document).on('pjax:complete，若是直接访问不会触发，反访问其他超链接进来才触发，且访问其他页面还会继续触发，需要增加一个判断 3.当图片未加载就点击超链接，返回时图片依旧不会加载--》进而每次访问都要其执行以下函数-->
+<script>
+function loadpic(pic1,pic2,wh){
+	cover1 = new Image();
+	cover2 = new Image();
+	cover1.src = pic1;//"/images/post/cover-1/the-first-page.jpg";//https://mademistakes.com/assets/images/about-michael-collage-2016.jpg
+	cover2.src = pic2;//"/images/post/cover-1/the-first-page.jpg";//https://mademistakes.com/assets/images/about-michael-collage-2016.jpg
+	/*错误写法:
+	coverX.onload = function() {coverY.onload = function()},因为若是coverY先加载即用掉了onload，coverX再用onload就等不到，不会执行*/
+	cover2.onload = function() {
+		$("#j"+wh.split('.')[1]).remove();
+		j=".jj-"+wh.split('-')[1]+":before{ background-image: url('"+cover2.src+"');}\n";
+		$('#jjj').append(j);
+		if(cover1.complete){
+			cw(wh,cover1.src);
+		}else{
+			cover1.onload = function() {
+				cw(wh,cover1.src);
+			};
+		}
+	}
+}
+function cw(wh,src){
+	$(wh+" img").attr('src',src);
+	$(wh+" img").removeClass('not-clear-1').addClass('is-clear-1');
+	setTimeout(function () {
+		$(wh).removeClass('not-clear-2').addClass('is-clear-2');
+	}, 200);
+}
+function slove_cache_not_onload(){
+	var i=1;
+	var a=".jj-"+i;
+	if ($(a)!=null){
+		loadpic(($(a+' li')).html().split(',')[0],$(a+' li').html().split(',')[1],a);
+		i++;
+		a=".jj-"+i;
+	}
+	$(window).on('scroll', function () {
+		if($(a).length>0){//判断终点
+			if($(a).offset().top <= $(window).scrollTop() + $(window).height() * 0.8){
+				k1=$(a+' li').html().split(',')[0];
+				k2=$(a+' li').html().split(',')[1];
+				if(k1!=""&&k2!=""){
+					loadpic(k1,k2,a);
+				}
+				i++;
+				a=".jj-"+i;
+			}
+		}
+	});
+}
+if ($(".jj").length > 0){
+	slove_cache_not_onload();
+}
+</script>

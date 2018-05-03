@@ -1,24 +1,3 @@
-$(window).on("load",function(){
-var i=1;
-a=".jj-"+i;
-if ($(a)!=null){
-	loadpic(($(a+' p')).html().split(',')[0],$(a+' p').html().split(',')[1],a);
-	i++;
-	a=".jj-"+i;
-}
-$(window).on('scroll', function () {
-	if($(a).length>0){//判断终点
-		if($(a).offset().top <= $(window).scrollTop() + $(window).height() * 0.8){
-			k1=$(a+' p').html().split(',')[0];
-			k2=$(a+' p').html().split(',')[1];
-			if(k1!=""&&k2!=""){
-				loadpic(k1,k2,a);
-			}
-			i++;
-			a=".jj-"+i;
-		}
-	}
-});
 function loadpic(pic1,pic2,wh){
 	cover1 = new Image();
 	cover2 = new Image();
@@ -46,4 +25,25 @@ function cw(wh,src){
 		$(wh).removeClass('not-clear-2').addClass('is-clear-2');
 	}, 200);
 }
-});
+function slove_cache_not_onload(){
+	var i=1;
+	var a=".jj-"+i;
+	if ($(a)!=null){
+		loadpic(($(a+' li')).html().split(',')[0],$(a+' li').html().split(',')[1],a);
+		i++;
+		a=".jj-"+i;
+	}
+	$(window).on('scroll', function () {
+		if($(a).length>0){//判断终点
+			if($(a).offset().top <= $(window).scrollTop() + $(window).height() * 0.8){
+				k1=$(a+' li').html().split(',')[0];
+				k2=$(a+' li').html().split(',')[1];
+				if(k1!=""&&k2!=""){
+					loadpic(k1,k2,a);
+				}
+				i++;
+				a=".jj-"+i;
+			}
+		}
+	});
+}
