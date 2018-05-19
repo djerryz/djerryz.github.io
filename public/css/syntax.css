@@ -95,7 +95,7 @@ page-break-inside:avoid;
 
 code,kbd,samp {
 font-family:monospace,monospace;
-font-size:1em;
+font-size:0.8em;
 }
 
 .comment-content div.highlighter-rouge .highlight code {
